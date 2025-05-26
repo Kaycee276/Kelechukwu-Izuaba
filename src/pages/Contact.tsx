@@ -62,12 +62,16 @@ const Contact = () => {
 
 			setSuccess(true);
 			setFormData({ name: "", message: "" });
-		} catch (err) {
-			setError(
-				err.message.includes("401")
-					? "Authentication failed - check your Supabase keys"
-					: err.message
-			);
+		} catch (err: unknown) {
+			if (err instanceof Error) {
+				setError(
+					err.message.includes("401")
+						? "Authentication failed - check your Supabase keys"
+						: err.message
+				);
+			} else {
+				setError("An unknown error occurred.");
+			}
 		} finally {
 			setLoading(false);
 		}
