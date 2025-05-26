@@ -1,7 +1,7 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
-interface SocialLink {
+export interface SocialLink {
 	name: string;
 	url: string;
 	icon: React.ReactElement;

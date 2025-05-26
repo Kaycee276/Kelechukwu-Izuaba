@@ -25,7 +25,7 @@ const Home = () => {
 				</motion.p>
 
 				<motion.div variants={fadeIn("up", "spring", 0.4, 1)} className="p-4">
-					<p className="text-sm md:text-lg text-black/90 mb-4 tracking-tighter">
+					<p className="text-sm md:text-lg text-black/70 mb-4 tracking-tighter">
 						I build beautiful, functional digital experiences with modern web
 						technologies and blockchain integration.
 					</p>

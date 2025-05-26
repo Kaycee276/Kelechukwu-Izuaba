@@ -15,7 +15,7 @@ html {
 }
 
 h1 {
-	color: black;
+	color: #e85d04;
 }
 
 h2 {
@@ -27,6 +27,14 @@ h3 {
 	font-size: 1.3rem;
 	line-height: 1.2;
 	color: #e85d04;
+}
+
+h5 {
+	color: #ff9451;
+}
+
+span {
+	text-transform: capitalize;
 }
 
 div {

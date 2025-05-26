@@ -76,24 +76,24 @@ const About = () => {
 					>
 						<p className="text-xs sm:text-sm">
 							Im <h1 className="uppercase"> Izuaba Kenneth Kelechukwu</h1>"
-							&nbsp; &nbsp; I design interfaces that move with purpose - React
-							ecosystems built in TypeScript, where every animation serves a
-							function and every component balances beauty with performance.{" "}
+							&nbsp; &nbsp; <span>I</span> design interfaces that move with
+							purpose - React ecosystems built in TypeScript, where every
+							animation serves a function and every component balances beauty
+							with performance. <br />
+							<br />
+							&nbsp; &nbsp; <span>The</span> backend architecture is lean yet
+							powerful: Node.js services with clean APIs, optimized queries, and
+							secure authentication flows. When working with Web3, I focus on
+							making blockchain interactions feel inevitable rather than
+							intimidating - wallet connections that flow naturally, transaction
+							visualizations that tell stories, and smart contracts that extend
+							the UI's logic. Across the stack, I prioritize solutions that are
+							maintainable first, then magical.
 							<br />
 							<br />
-							&nbsp; &nbsp; The backend architecture is lean yet powerful:
-							Node.js services with clean APIs, optimized queries, and secure
-							authentication flows. When working with Web3, I focus on making
-							blockchain interactions feel inevitable rather than intimidating -
-							wallet connections that flow naturally, transaction visualizations
-							that tell stories, and smart contracts that extend the UI's logic.
-							Across the stack, I prioritize solutions that are maintainable
-							first, then magical.
-							<br />
-							<br />
-							&nbsp; &nbsp; The result is technology that feels personal yet
-							professional, whether you're scrolling through a feed or signing a
-							blockchain transaction."
+							&nbsp; &nbsp; <span>The</span> result is technology that feels
+							personal yet professional, whether you're scrolling through a feed
+							or signing a blockchain transaction."
 						</p>
 					</motion.div>
 					<motion.button

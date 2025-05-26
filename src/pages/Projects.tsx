@@ -75,9 +75,9 @@ const Projects = () => {
 								<p className="text-gray-300 mb-4">{project.description}</p>
 								<div className="flex flex-wrap gap-2 mb-6">
 									{project.tags.map((tag) => (
-										<span key={tag} className="px-3 py-1 text-xs text-black">
+										<h5 key={tag} className="px-3 py-1 text-xs text-black">
 											{tag}
-										</span>
+										</h5>
 									))}
 								</div>
 
