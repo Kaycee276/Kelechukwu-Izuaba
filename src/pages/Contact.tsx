@@ -1,16 +1,17 @@
 import { FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import type { SocialLink } from "../components/Socials";
-import { motion } from "framer-motion";
-import { fadeIn } from "../utils/motion";
-import { createClient } from "@supabase/supabase-js";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const messages = [
+	"Get in touch for collaborations and inquiries.",
+	"Let's build something amazing together ",
+	"Open for freelance projects and partnerships ",
+	"Always happy to talk about web3, design, or React ",
+	"Drop a hi 👋 — I reply fast!",
+];
 
-const socials: SocialLink[] = [
+const socials = [
 	{
 		name: "Whatsapp",
 		url: "https://wa.me/2349127178874",
@@ -23,127 +24,131 @@ const socials: SocialLink[] = [
 	},
 ];
 
-const Contact = () => {
-	const [formData, setFormData] = useState({
-		name: "",
-		message: "",
-	});
-	const [loading, setLoading] = useState(false);
-	const [success, setSuccess] = useState(false);
-	const [error, setError] = useState("");
+const StackedMessages = () => {
+	const [currentIndex, setCurrentIndex] = useState(0);
 
-	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => {
-		const { name, value } = e.target;
-		setFormData((prev) => ({
-			...prev,
-			[name]: value,
-		}));
-	};
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentIndex((prev) => (prev + 1) % messages.length);
+		}, 3500);
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		setLoading(true);
-		setError("");
+		return () => clearInterval(interval);
+	}, []);
 
-		try {
-			const { error: insertError } = await supabase
-				.from("messages") // Use lowercase consistently
-				.insert([
-					{
-						name: formData.name,
-						message: formData.message,
-						// sent_at will auto-populate from DEFAULT
-					},
-				]);
-
-			if (insertError) throw insertError;
-
-			setSuccess(true);
-			setFormData({ name: "", message: "" });
-		} catch (err: unknown) {
-			if (err instanceof Error) {
-				setError(
-					err.message.includes("401")
-						? "Authentication failed - check your Supabase keys"
-						: err.message
-				);
-			} else {
-				setError("An unknown error occurred.");
-			}
-		} finally {
-			setLoading(false);
+	// Get the stack of 3 visible cards
+	const getVisibleCards = () => {
+		const cards = [];
+		for (let i = 0; i < 3; i++) {
+			const index = (currentIndex + i) % messages.length;
+			cards.push({
+				id: index,
+				message: messages[index],
+				position: i,
+			});
 		}
+		return cards;
 	};
+
+	const visibleCards = getVisibleCards();
+
 	return (
-		<div className="h-full flex items-center justify-center">
-			<div className="text-center max-w-2xl px-4 flex flex-col gap-5">
-				<h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-					Contacts
-				</h1>
-				<p className="text-lg text-gray-200 mb-8">
-					Get in touch for collaborations and inquiries.
-				</p>
-
-				{/* Contact Form */}
-				<form onSubmit={handleSubmit} className="space-y-4 flex flex-col gap-5">
-					<input
-						type="text"
-						name="name"
-						placeholder="Your Name"
-						value={formData.name}
-						onChange={handleChange}
-						required
-						minLength={2}
-						className="w-full px-4 py-3 border-b text-white placeholder-gray-400 focus:outline-none focus:border-[#e85d04] transition-all duration-200"
-					/>
-					<textarea
-						name="message"
-						placeholder="Your Message"
-						value={formData.message}
-						onChange={handleChange}
-						rows={4}
-						required
-						className="w-full px-4 py-3 border-b text-white placeholder-gray-400 focus:outline-none focus:border-[#e85d04] transition-all duration-200 resize-none"
-					/>
-
-					{error && (
-						<p className="text-red-400 text-sm">
-							{error.includes("violates row-level security")
-								? "Server error: Please try again later"
-								: error}
-						</p>
-					)}
-					{success && (
-						<p className="text-green-400 text-sm">Message sent successfully!</p>
-					)}
-
-					<motion.button
-						type="submit"
-						disabled={loading}
-						variants={fadeIn("up", "spring", 0.2, 1)}
-						whileTap={{ scale: 0.95 }}
-						className="mt-6 px-4 py-2 bg-white/5 border border-white/20 rounded-sm text-white text-sm cursor-pointer hover:bg-white/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+		<div className="relative h-64 w-full max-w-md mx-auto mb-8 flex items-center justify-center">
+			<AnimatePresence initial={false} mode="popLayout">
+				{visibleCards.map(({ id, message, position }) => (
+					<motion.div
+						key={id}
+						initial={{
+							scale: 0.85 - position * 0.05,
+							opacity: 0,
+							y: 50 + position * 15,
+							rotateX: 5,
+						}}
+						animate={{
+							scale: 1 - position * 0.08,
+							opacity: 1 - position * 0.25,
+							y: position * 12,
+							rotateX: 0,
+							zIndex: 10 - position,
+							transition: {
+								duration: 0.5,
+								ease: [0.25, 0.46, 0.45, 0.94],
+							},
+						}}
+						exit={{
+							scale: 1.05,
+							opacity: 0,
+							y: -100,
+							rotateX: -10,
+							transition: {
+								duration: 0.4,
+								ease: [0.55, 0.085, 0.68, 0.53],
+							},
+						}}
+						className={`absolute w-full p-6 rounded backdrop-blur-sm shadow-2xl ${
+							position === 0
+								? "bg-primary/10 border-primary/30"
+								: "bg-muted/5 border-border/10"
+						}`}
+						style={{
+							transformPerspective: 1000,
+						}}
 					>
-						{loading ? "Sending..." : "Send Message"}
-					</motion.button>
-				</form>
+						<p
+							className={`text-lg font-medium leading-relaxed transition-all duration-500 ${
+								position === 0 ? "text-foreground" : "text-muted-foreground"
+							}`}
+							style={{
+								filter: position > 0 ? `blur(${position * 2}px)` : "blur(0px)",
+							}}
+						>
+							{message}
+						</p>
+					</motion.div>
+				))}
+			</AnimatePresence>
+		</div>
+	);
+};
+
+const Contact = () => {
+	return (
+		<div className="min-h-screen flex items-center justify-center bg-background px-4">
+			<div className="text-center max-w-2xl w-full flex flex-col gap-8">
+				<motion.h1
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6 }}
+					className="text-4xl md:text-5xl font-bold mb-6"
+				>
+					Let's Connect
+				</motion.h1>
+
+				{/* Stacked Messages Animation */}
+				<div className="flex justify-center">
+					<StackedMessages />
+				</div>
 
 				{/* Social Icons */}
-				<div className="flex justify-center gap-8">
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, delay: 0.3 }}
+					className="flex justify-center gap-8"
+				>
 					{socials.map((social) => (
-						<a
+						<motion.a
 							href={social.url}
 							key={social.name}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-white hover:text-blue-400 transition-colors duration-200"
+							className="text-foreground hover:text-primary transition-colors duration-300 transform hover:scale-110 animate-bounce"
+							whileHover={{ scale: 1.1 }}
+							whileTap={{ scale: 0.95 }}
 						>
 							{social.icon}
-						</a>
+						</motion.a>
 					))}
-				</div>
+				</motion.div>
 			</div>
 		</div>
 	);

@@ -24,14 +24,14 @@ const Toolbox = ({ tools, toggleToolbox }: ToolboxProps) => {
 				initial={{ y: 20, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				exit={{ y: 20, opacity: 0 }}
-				className="rounded-lg p-6 max-w-md w-full mx-4"
+				className="rounded-lg p-6 max-w-lg w-full mx-4"
 				onClick={(e) => e.stopPropagation()}
 			>
 				<motion.div
 					variants={staggerContainer(0.1, 0.1)}
 					initial="hidden"
 					animate="show"
-					className="grid grid-cols-2 gap-8"
+					className="grid grid-cols-3 gap-8 "
 				>
 					{tools.map((tool, categoryIndex) => (
 						<motion.div
@@ -42,7 +42,7 @@ const Toolbox = ({ tools, toggleToolbox }: ToolboxProps) => {
 							<h4 className="text-gray-400 text-xs uppercase tracking-wider">
 								{tool.category}
 							</h4>
-							<ul className="space-y-1.5">
+							<ul className="space-y-1.5 list-disc">
 								{tool.items.map((item, itemIndex) => (
 									<motion.li
 										key={item}
@@ -53,7 +53,7 @@ const Toolbox = ({ tools, toggleToolbox }: ToolboxProps) => {
 											0.5
 										)}
 										whileHover={{ x: 4 }}
-										className="text-white text-sm font-light transition-all"
+										className="text-white text-sm font-light transition-all "
 									>
 										{item}
 									</motion.li>

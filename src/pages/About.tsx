@@ -16,19 +16,84 @@ const About = () => {
 	const tools: Tools[] = [
 		{
 			category: "Frontend",
-			items: ["React", "TypeScript", "Tailwind CSS", "Javascript"],
+			items: [
+				"React",
+				"TypeScript",
+				"Tailwind CSS",
+				"Javascript",
+				"Next.js",
+				"Framer Motion",
+				"AppKit",
+				"HTML",
+				"CSS",
+				"Framer",
+				"Chakra UI",
+				"Zustand",
+				"Redux",
+				"React Query",
+				"Three.js",
+				"GSAP",
+				"D3.js",
+				"Chart.js",
+				"Recharts",
+				"Vite",
+				"Webpack",
+			],
 		},
 		{
 			category: "Backend",
-			items: ["Node.js", "Express", "PostgreSQL"],
+			items: [
+				"Node.js",
+				"Express",
+				"PostgreSQL",
+				"Database Design",
+				"REST APIs",
+				"GraphQL",
+				"Prisma",
+				"Supabase",
+				"Firebase",
+				"MongoDB",
+				"Mongoose",
+				"Authentication & Authorization",
+				"Socket.io",
+				"Redis",
+				"JWT",
+				"OAuth",
+				"Serverless Functions",
+				"Microservices",
+				"Docker",
+				"Kubernetes",
+				"CI/CD",
+			],
 		},
 		{
 			category: "Web3",
-			items: ["Solidity", "Ethers.js", "Wallet Integration", "Smart Contracts"],
+			items: [
+				"Solidity",
+				"Ethers.js",
+				"Wallet Integration",
+				"Smart Contracts, ",
+				"Foundry",
+				"Hardhat",
+				"Web3.js",
+				"IPFS",
+				"The Graph",
+				"Metamask",
+				"OpenZeppelin",
+				"DeFi Concepts",
+				"NFT Standards",
+				"Gas Optimization",
+				"Tokenomics",
+				"Blockchain Architecture",
+				"Smart Contract Security",
+				"Decentralized Storage",
+				"Layer 2 Solutions",
+				"Web3 UX/UI Principles",
+			],
 		},
 		{
 			category: "Design",
-			items: ["UI/UX Principles", "Prototyping", "Micro-interactions"],
+			items: ["UI/UX Principles", "Prototyping", "Micro-interactions", "Figma"],
 		},
 	];
 
@@ -42,7 +107,7 @@ const About = () => {
 			{/* Toolbox Modal */}
 			{isToolboxOpen && <Toolbox tools={tools} toggleToolbox={toggleToolbox} />}
 
-			<div className="max-w-4xl w-full grid md:grid-cols-2 gap-12 items-center">
+			<div className="max-w-4xl w-full grid md:grid-cols-2 gap-12 items-center ">
 				{/* Left Column - Image */}
 				<motion.div
 					variants={fadeIn("right", "spring", 0.2, 1)}

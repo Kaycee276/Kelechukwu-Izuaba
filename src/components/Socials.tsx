@@ -20,7 +20,7 @@ const socials: SocialLink[] = [
 	},
 	{
 		name: "Twitter",
-		url: "https://twitter.com/Kay_cee276",
+		url: "https://x.com/kc_deblocksmith",
 		icon: <FaTwitter className="text-lg sm:text-xl md:text-2xl" />,
 	},
 ];

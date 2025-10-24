@@ -27,7 +27,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 	const isActive = (path: string) => location.pathname === path;
 
 	return (
-		<section className="relative h-screen w-full overflow-hidden">
+		<section className="relative h-screen w-full ">
 			<img
 				src="/image-1.jpeg"
 				alt="kaycee"
@@ -43,7 +43,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 					WebkitMaskImage: `radial-gradient(circle 70px at ${mousePosition.x}px ${mousePosition.y}px, transparent 0%, black 100%)`,
 				}}
 			>
-				<div className="w-full h-full backdrop-blur-sm bg-black/50" />
+				<div className="w-full h-full backdrop-blur-sm bg-black/75" />
 			</div>
 
 			{/* Foreground content */}
@@ -56,7 +56,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 								initial={{
 									opacity: 0,
 									y: 20,
-									rotate: 300, // Start slightly more rotated
+									rotate: 300,
 								}}
 								animate={{
 									opacity: 1,
@@ -69,13 +69,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 										damping: 10,
 									},
 								}}
+								className={`${
+									isActive(item.path) ? "text-[#e85d04]" : "text-white"
+								}`}
 							>
-								<Link
-									to={item.path}
-									className={`whitespace-nowrap block ${
-										isActive(item.path) ? "text-[#e85d04]" : "text-white"
-									}`}
-								>
+								<Link to={item.path} className={` `}>
 									{item.name}
 								</Link>
 							</motion.li>

@@ -3,12 +3,67 @@ import { staggerContainer, fadeIn, textVariant } from "../utils/motion";
 
 const projects = [
 	{
+		title: "Twitpay",
+		description:
+			" Twitpay is a decentralized social payment platform that enables users to create and claim cryptocurrency giveaways through Twitter integration and blockchain technology.",
+		tags: [
+			"React",
+			"JavaScript",
+			"TypeScript",
+			"Framer",
+			"Tailwind",
+			"NodeJS",
+			"Express",
+			"Supabase",
+			"social auth",
+			"Appkit",
+			"Foundry",
+		],
+		link: "https://twitpay.vercel.app",
+		repo: "https://github.com/Kaycee276/Twitpay",
+	},
+	{
+		title: "Escaza",
+		description:
+			"Escaza is a web-based application built to digitize the logbook experience for IT (Industrial Training) students. It helps students avoid errors while filling their physical logbooks and provides smart features like grammar checking, reminders, and even AI-generated entries based on existing writing.",
+		tags: [
+			"React",
+			"JavaScript",
+			"TypeScript",
+			"Framer",
+			"Tailwind",
+			"NodeJS",
+			"Express",
+			"Supabase",
+			"Google Auth",
+			"Chart.js",
+		],
+		link: "https://escaza.vercel.app",
+		repo: "https://github.com/Kaycee276/Escaza",
+	},
+	{
+		title: "Mini Geo Guesser",
+		description:
+			"Test Your Geography Knowledge, Challenge yourself to identify locations around the world. Make your guess, answer questions, and see how well you know our planet!",
+		tags: ["Solidity", "foundry", "ethers.js"],
+		// link: "https://",
+		repo: "https://github.com/solomonadzape95/mini-geo-guesser",
+	},
+	{
 		title: "Aboki.eth",
 		description:
 			"Aboki.eth is a decentralized Web3 protocol that allows users to stake digital assets, access fiat loans, and repay to reclaim assets with rewards—without the need for intermediaries.",
 		tags: ["React", "JavaScript", "AppKit", "Framer", "Tailwind"],
 		link: "https://abokieth.vercel.app",
 		repo: "https://github.com/Kaycee276/Aboki",
+	},
+	{
+		title: "Switch Dashboard",
+		description:
+			"The official explorer for the m3tering protocol, providing real-time insights into energy consumption and device performance.",
+		tags: ["React", "Typescript", "Tailwind", "chart.js", "Next.js"],
+		link: "https://m3terscan-monorepo.vercel.app/",
+		repo: "https://github.com/Kaycee276/m3terscan-monorepo",
 	},
 	{
 		title: "Node-Reg-No",
@@ -42,31 +97,36 @@ const Projects = () => {
 			animate="show"
 			className="h-full overflow-y-auto py-12"
 		>
-			<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
+			<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8 ">
 				{/* Header */}
-				<motion.div variants={textVariant(0.2)} className="text-center mb-16">
-					<h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-						Projects
-					</h1>
-				</motion.div>
-				<motion.p
-					variants={fadeIn("up", "spring", 0.4, 1)}
-					className="text-sm text-gray-300 max-w-2xl mx-auto text-center"
-				>
-					Browse through my latest creative works and projects
-				</motion.p>
+				<header className="sticky top-0 z-50 backdrop-blur-sm flex flex-col gap-6 items-center ">
+					<motion.div
+						variants={textVariant(0.2)}
+						className="text-center mb-16 "
+					>
+						<h1 className="text-4xl md:text-5xl capitalize font-bold text-white mb-4">
+							Projects
+						</h1>
+					</motion.div>
+					<motion.p
+						variants={fadeIn("up", "spring", 0.4, 1)}
+						className="text-sm text-gray-300 max-w-2xl mx-auto text-center "
+					>
+						Browse through my latest creative works and projects
+					</motion.p>
+				</header>
 
 				{/* Projects Grid */}
 				<motion.div
 					variants={staggerContainer(0.1, 0.2)}
-					className="grid grid-cols-1 md:grid-cols-2 gap-8"
+					className="grid grid-cols-1 md:grid-cols-2 gap-8 "
 				>
 					{projects.map((project, index) => (
 						<motion.div
 							key={project.title}
 							variants={fadeIn("up", "spring", index * 0.2, 0.75)}
 							// whileHover={{ y: -8 }}
-							className="rounded-xl overflow-hidden backdrop-blur-sm transition-all hover:bg-white/5  "
+							className="rounded-xl overflow-hidden backdrop-blur-sm transition-all hover:bg-white/5 "
 						>
 							<div className="p-6">
 								<h3 className="uppercase font-semibold text-white mb-2">
