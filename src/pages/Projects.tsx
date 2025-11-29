@@ -3,25 +3,28 @@ import { staggerContainer, fadeIn, textVariant } from "../utils/motion";
 
 const projects = [
 	{
-		title: "Twitpay",
+		title: "Rhitta",
 		description:
-			" Twitpay is a decentralized social payment platform that enables users to create and claim cryptocurrency giveaways through Twitter integration and blockchain technology.",
+			"Rhitta is a next-generation decentralized music streaming platform that leverages Somnia Data Streams (SDS) to deliver real-time, reactive music experiences on the blockchain.",
 		tags: [
 			"React",
-			"JavaScript",
 			"TypeScript",
-			"Framer",
 			"Tailwind",
+			"zustand",
+			"Buffer",
 			"NodeJS",
 			"Express",
+			"multer",
+			"music-metadata",
 			"Supabase",
-			"social auth",
-			"Appkit",
-			"Foundry",
+			"WebAudioPlayer",
+			'Rainbow-kit"',
+			"Somnia Data Streams",
 		],
-		link: "https://twitpay.vercel.app",
-		repo: "https://github.com/Kaycee276/Twitpay",
+		link: "https://rhitta.vercel.app",
+		repo: "https://github.com/Kaycee276/Rhitta",
 	},
+
 	{
 		title: "Escaza",
 		description:
@@ -40,6 +43,14 @@ const projects = [
 		],
 		link: "https://escaza.vercel.app",
 		repo: "https://github.com/Kaycee276/Escaza",
+	},
+	{
+		title: "Sundao",
+		description:
+			"an opensource dapp to be used to co-ordinate user payment for energy",
+		tags: ["React", "Framer", "JavaScript", "Tailwind"],
+		link: "https://payer-dapp.vercel.app",
+		repo: "https://github.com/IDEA-godwin/payer-dapp",
 	},
 	{
 		title: "Mini Geo Guesser",
@@ -66,20 +77,33 @@ const projects = [
 		repo: "https://github.com/Kaycee276/m3terscan-monorepo",
 	},
 	{
+		title: "Twitpay",
+		description:
+			" Twitpay is a decentralized social payment platform that enables users to create and claim cryptocurrency giveaways through Twitter integration and blockchain technology.",
+		tags: [
+			"React",
+			"JavaScript",
+			"TypeScript",
+			"Framer",
+			"Tailwind",
+			"NodeJS",
+			"Express",
+			"Supabase",
+			"social auth",
+			"Appkit",
+			"Foundry",
+		],
+		link: "https://twitpay.vercel.app",
+		repo: "https://github.com/Kaycee276/Twitpay",
+	},
+	{
 		title: "Node-Reg-No",
 		description:
 			"Node-reg-no is a Node.js application that allows users to upload PDF files and extract registration numbers from them.",
 		tags: ["Node.js", "Express", "REST", "pdf-parse", "postgresql", "postman"],
 		repo: "https://github.com/Kaycee276/Node-reg-no/",
 	},
-	{
-		title: "Sundao",
-		description:
-			"an opensource dapp to be used to co-ordinate user payment for energy",
-		tags: ["React", "Framer", "JavaScript", "Tailwind"],
-		link: "https://payer-dapp.vercel.app",
-		repo: "https://github.com/IDEA-godwin/payer-dapp",
-	},
+
 	{
 		title: "Super-Space",
 		description:
@@ -97,7 +121,7 @@ const Projects = () => {
 			animate="show"
 			className="h-full overflow-y-auto py-12"
 		>
-			<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8 ">
+			<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8  ">
 				{/* Header */}
 				<header className="sticky top-0 z-50 backdrop-blur-sm flex flex-col gap-6 items-center ">
 					<motion.div

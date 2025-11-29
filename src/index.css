@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap");
 @import "tailwindcss";
 /* @custom-variant dark (&:where(.dark, .dark *)); */
 
 * {
-	font-weight: 400;
+	font-weight: 300;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -76,25 +76,14 @@ li:hover {
 }
 
 body {
-	font-family: "Bai Jamjuree", sans-serif;
+	font-family: "Science Gothic", sans-serif;
 	text-transform: lowercase;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
-	width: 2px;
-	height: 8px;
+	display: none;
 }
 
-::-webkit-scrollbar-track {
-	background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-	background: rgba(255, 255, 255, 0.2);
-	border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: rgba(255, 255, 255, 0.3);
+* {
+	scrollbar-width: none;
 }

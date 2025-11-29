@@ -18,17 +18,18 @@ const Toolbox = ({ tools, toggleToolbox }: ToolboxProps) => {
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
 			className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-			onClick={toggleToolbox}
 		>
 			<motion.div
+				onClick={toggleToolbox}
 				initial={{ y: 20, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				exit={{ y: 20, opacity: 0 }}
 				className="rounded-lg p-6 max-w-lg w-full mx-4"
-				onClick={(e) => e.stopPropagation()}
 			>
 				<motion.div
 					variants={staggerContainer(0.1, 0.1)}
+					// onClick={(e) => e.stopPropagation()}
+					onClick={toggleToolbox}
 					initial="hidden"
 					animate="show"
 					className="grid grid-cols-3 gap-8 "
