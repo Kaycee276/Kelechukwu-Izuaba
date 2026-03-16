@@ -3,6 +3,50 @@ import { staggerContainer, fadeIn, textVariant } from "../utils/motion";
 
 const projects = [
 	{
+		title: "Chesster",
+		description:
+			"Chesster is an online two-player chess game where players create or join sessions using shareable game codes, with all moves validated and tracked in real time. Every game and its full move history are saved to a database, ensuring a persistent and reliable playing experience.",
+		tags: [
+			"React",
+			"TypeScript",
+			"Javascript",
+			"Tailwind",
+			"NodeJS",
+			"Express",
+			"Supabase",
+			"socket.io",
+			"zustand",
+			"axios",
+			"Solidity",
+			"Foundry",
+			"reown/appkit",
+			"ethers.js",
+		],
+		link: "https://chesster-lovat.vercel.app",
+		repo: "https://github.com/Kaycee276/Chesster",
+	},
+	{
+		title: "Midas",
+		description:
+			"A micro-investment platform that connects university students with verified campus merchants. Students invest small amounts in local businesses they use and trust, while merchants raise capital through a KYC-verified onboarding process.",
+		tags: [
+			"React",
+			"TypeScript",
+			"Tailwind",
+			"NodeJS",
+			"Express",
+			"Supabase",
+			"NodeMailer",
+			"socket.io",
+			"supabase",
+			"recharts",
+			"zustand",
+			"axios",
+		],
+		link: "https://midas-peach-chi.vercel.app",
+		repo: "https://github.com/Kaycee276/Midas",
+	},
+	{
 		title: "Rhitta",
 		description:
 			"Rhitta is a next-generation decentralized music streaming platform that leverages Somnia Data Streams (SDS) to deliver real-time, reactive music experiences on the blockchain.",

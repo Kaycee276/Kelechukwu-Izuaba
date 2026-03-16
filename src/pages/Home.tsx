@@ -14,7 +14,7 @@ const Home = () => {
 					variants={textVariant(0.1)}
 					className="text-xl md:text-4xl lg:text-5xl font-bold tracking-wider "
 				>
-					Fullstack/Web3 Developer
+					<span>I</span>'m a Fullstack/Web3 Developer
 				</motion.h1>
 
 				<motion.p
@@ -23,13 +23,6 @@ const Home = () => {
 				>
 					Welcome to my creative space
 				</motion.p>
-
-				<motion.div variants={fadeIn("up", "spring", 0.4, 1)} className="p-4">
-					<p className="text-sm md:text-lg text-black/70 mb-4 tracking-tighter">
-						I build beautiful, functional digital experiences with modern web
-						technologies and blockchain integration.
-					</p>
-				</motion.div>
 			</div>
 		</motion.div>
 	);
