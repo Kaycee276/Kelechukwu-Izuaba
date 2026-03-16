@@ -35,7 +35,6 @@ const StackedMessages = () => {
 		return () => clearInterval(interval);
 	}, []);
 
-	// Get the stack of 3 visible cards
 	const getVisibleCards = () => {
 		const cards = [];
 		for (let i = 0; i < 3; i++) {
