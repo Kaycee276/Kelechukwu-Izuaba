@@ -1,9 +1,11 @@
+"use client";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Toolbox from "../components/Toolbox";
-import { staggerContainer, fadeIn, textVariant } from "../utils/motion";
+import Toolbox from "@/components/Toolbox";
+import { staggerContainer, fadeIn, textVariant } from "@/utils/motion";
 
-const About = () => {
+export default function AboutPage() {
 	const [isToolboxOpen, setIsToolboxOpen] = useState(false);
 
 	const toggleToolbox = () => setIsToolboxOpen(!isToolboxOpen);
@@ -36,9 +38,11 @@ const About = () => {
 				"Node.js",
 				"Express",
 				"PostgreSQL",
+				"SQLite",
 				"REST APIs",
 				"GraphQL",
 				"Prisma",
+				"Drizzle ORM",
 				"Supabase",
 				"Socket.io",
 				"Redis",
@@ -54,7 +58,7 @@ const About = () => {
 			items: [
 				"Solidity",
 				"Ethers.js",
-				"Smart Contracts, ",
+				"Smart Contracts",
 				"Foundry",
 				"Web3.js",
 				"IPFS",
@@ -65,7 +69,6 @@ const About = () => {
 				"Smart Contract Security",
 			],
 		},
-	
 	];
 
 	return (
@@ -73,12 +76,12 @@ const About = () => {
 			variants={staggerContainer()}
 			initial="hidden"
 			animate="show"
-			className="h-full flex items-center justify-center px-4 relative"
+			className="h-full flex items-center justify-center px-4 relative py-8"
 		>
 			{/* Toolbox Modal */}
 			{isToolboxOpen && <Toolbox tools={tools} toggleToolbox={toggleToolbox} />}
 
-			<div className="max-w-4xl w-full grid md:grid-cols-2 gap-12 items-center ">
+			<div className="max-w-4xl w-full grid md:grid-cols-2 gap-12 items-center">
 				{/* Left Column - Image */}
 				<motion.div
 					variants={fadeIn("right", "spring", 0.2, 1)}
@@ -110,30 +113,18 @@ const About = () => {
 						variants={fadeIn("left", "spring", 0.4, 1)}
 						className="space-y-6"
 					>
-						<p className="text-xs sm:text-sm">
-							I'm <h1 className="uppercase"> Izuaba Kenneth Kelechukwu</h1>"
-							<span>I</span> design interfaces that move with purpose, React
-							ecosystems built in TypeScript where every animation serves a
-							function and every component balances beauty with performance.{" "}
-							<br />
-							<br />
-							<span>The</span> backend architecture is lean yet powerful:
-							Node.js services with clean APIs, optimized queries, and secure
-							authentication flows. When working with Web3, I focus on making
-							blockchain interactions feel inevitable rather than intimidating,
-							with wallet connections that flow naturally, transaction
-							visualizations that tell stories, and smart contracts that extend
-							the UI's logic. Lately my work has involved bringing real-time
-							media experiences closer to the blockchain layer, refining the way
-							user actions translate into smooth, reliable interactions. Across
-							the stack, I prioritize solutions that are maintainable first,
-							then magical.
-							<br />
-							<br />
-							<span>The</span> result is technology that feels personal yet
-							professional, whether you're scrolling through a feed or signing a
-							blockchain transaction."
-						</p>
+						<div className="text-xs sm:text-sm text-gray-300 space-y-4">
+							<p>
+								I'm <span className="uppercase font-semibold text-white">Izuaba Kenneth Kelechukwu</span>.
+								I design interfaces that move with purpose, React ecosystems built in TypeScript where every animation serves a function and every component balances beauty with performance.
+							</p>
+							<p>
+								The backend architecture is lean yet powerful: Node.js and Next.js services with clean APIs, SQLite & Drizzle ORM queries, and secure authentication flows. When working with Web3, I focus on making blockchain interactions feel inevitable rather than intimidating, with wallet connections that flow naturally, transaction visualizations that tell stories, and smart contracts that extend the UI's logic.
+							</p>
+							<p>
+								Lately my work has involved bringing real-time media experiences closer to the blockchain layer, refining the way user actions translate into smooth, reliable interactions. Across the stack, I prioritize solutions that are maintainable first, then magical.
+							</p>
+						</div>
 					</motion.div>
 					<motion.button
 						onClick={toggleToolbox}
@@ -147,6 +138,4 @@ const About = () => {
 			</div>
 		</motion.div>
 	);
-};
-
-export default About;
+}

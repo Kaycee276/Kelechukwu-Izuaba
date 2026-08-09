@@ -1,7 +1,9 @@
-import { motion } from "framer-motion";
-import { staggerContainer, fadeIn, textVariant } from "../utils/motion";
+"use client";
 
-const Home = () => {
+import { motion } from "framer-motion";
+import { staggerContainer, fadeIn, textVariant } from "@/utils/motion";
+
+export default function HomePage() {
 	return (
 		<motion.div
 			variants={staggerContainer()}
@@ -12,7 +14,7 @@ const Home = () => {
 			<div className="text-center max-w-2xl px-4 lowercase">
 				<motion.h1
 					variants={textVariant(0.1)}
-					className="text-xl md:text-4xl lg:text-5xl font-bold tracking-wider "
+					className="text-xl md:text-4xl lg:text-5xl font-bold tracking-wider mb-2"
 				>
 					<span>I</span>'m a Fullstack/Web3 Developer
 				</motion.h1>
@@ -26,6 +28,4 @@ const Home = () => {
 			</div>
 		</motion.div>
 	);
-};
-
-export default Home;
+}

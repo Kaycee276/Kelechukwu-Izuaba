@@ -1,3 +1,5 @@
+"use client";
+
 import { FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,12 +17,12 @@ const socials = [
 	{
 		name: "Whatsapp",
 		url: "https://wa.me/2349127178874",
-		icon: <FaWhatsapp className="text-lg sm:text-xl md:text-2xl" />,
+		icon: <FaWhatsapp className="text-xl sm:text-2xl md:text-3xl" />,
 	},
 	{
 		name: "Email",
 		url: "mailto:kizuaba@gmail.com",
-		icon: <MdEmail className="text-lg sm:text-xl md:text-2xl" />,
+		icon: <MdEmail className="text-xl sm:text-2xl md:text-3xl" />,
 	},
 ];
 
@@ -83,19 +85,13 @@ const StackedMessages = () => {
 								ease: [0.55, 0.085, 0.68, 0.53],
 							},
 						}}
-						className={`absolute w-full p-6 rounded backdrop-blur-sm shadow-2xl ${
-							position === 0
-								? "bg-primary/10 border-primary/30"
-								: "bg-muted/5 border-border/10"
-						}`}
+						className={`absolute w-full p-6 rounded-xl border border-white/20 backdrop-blur-md shadow-2xl bg-black/60`}
 						style={{
 							transformPerspective: 1000,
 						}}
 					>
 						<p
-							className={`text-lg font-medium leading-relaxed transition-all duration-500 ${
-								position === 0 ? "text-foreground" : "text-muted-foreground"
-							}`}
+							className={`text-lg font-medium leading-relaxed transition-all duration-500 text-white`}
 							style={{
 								filter: position > 0 ? `blur(${position * 2}px)` : "blur(0px)",
 							}}
@@ -109,15 +105,15 @@ const StackedMessages = () => {
 	);
 };
 
-const Contact = () => {
+export default function ContactPage() {
 	return (
-		<div className="min-h-screen flex items-center justify-center bg-background px-4">
+		<div className="min-h-full flex items-center justify-center px-4 py-12">
 			<div className="text-center max-w-2xl w-full flex flex-col gap-8">
 				<motion.h1
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}
-					className="text-4xl md:text-5xl font-bold mb-6"
+					className="text-4xl md:text-5xl font-bold mb-6 text-white"
 				>
 					Let's Connect
 				</motion.h1>
@@ -140,8 +136,8 @@ const Contact = () => {
 							key={social.name}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-foreground hover:text-primary transition-colors duration-300 transform hover:scale-110 animate-bounce"
-							whileHover={{ scale: 1.1 }}
+							className="text-white hover:text-[#e85d04] transition-colors duration-300 transform hover:scale-110"
+							whileHover={{ scale: 1.15 }}
 							whileTap={{ scale: 0.95 }}
 						>
 							{social.icon}
@@ -151,6 +147,4 @@ const Contact = () => {
 			</div>
 		</div>
 	);
-};
-
-export default Contact;
+}
