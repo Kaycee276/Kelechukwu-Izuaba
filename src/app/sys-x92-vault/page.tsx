@@ -15,16 +15,8 @@ export default async function SecretAdminPage() {
     redirect("/sys-x92-vault/login");
   }
 
-  const rawProjects = db
-    .select()
-    .from(projects)
-    .orderBy(desc(projects.id))
-    .all();
-  const rawMessages = db
-    .select()
-    .from(messages)
-    .orderBy(desc(messages.id))
-    .all();
+  const rawProjects = await db.select().from(projects).orderBy(desc(projects.id));
+  const rawMessages = await db.select().from(messages).orderBy(desc(messages.id));
 
   const formattedProjects = rawProjects.map((p) => {
     let parsedTags: string[] = [];

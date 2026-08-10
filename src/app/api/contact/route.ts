@@ -13,8 +13,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Save message directly into SQLite database
-    const inserted = db
+    // Save message directly into SQLite database via libSQL
+    const [inserted] = await db
       .insert(messages)
       .values({
         name: name.trim(),
@@ -22,8 +22,7 @@ export async function POST(request: Request) {
         message: message.trim(),
         read: 0,
       })
-      .returning()
-      .get();
+      .returning();
 
     return NextResponse.json({
       success: true,

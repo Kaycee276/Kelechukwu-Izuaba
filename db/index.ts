@@ -1,32 +1,41 @@
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import Database from "better-sqlite3";
+import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql";
 import * as schema from "./schema";
-import path from "path";
 
-// Ensure database file exists in project root
-const dbPath = path.resolve(process.cwd(), "sqlite.db");
-const sqlite = new Database(dbPath);
+const url = process.env.TURSO_DATABASE_URL || "file:sqlite.db";
+const authToken = process.env.TURSO_AUTH_TOKEN;
 
-// Create tables automatically if they don't exist yet
-sqlite.exec(`
-  CREATE TABLE IF NOT EXISTS projects (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    description TEXT NOT NULL,
-    tags TEXT NOT NULL,
-    link TEXT,
-    repo TEXT,
-    created_at TEXT DEFAULT (datetime('now'))
-  );
+export const client = createClient({
+  url,
+  authToken,
+});
 
-  CREATE TABLE IF NOT EXISTS messages (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL,
-    message TEXT NOT NULL,
-    read INTEGER DEFAULT 0,
-    created_at TEXT DEFAULT (datetime('now'))
-  );
-`);
+// Execute table creation for local file mode
+if (!process.env.TURSO_DATABASE_URL) {
+  client
+    .executeMultiple(
+      `
+      CREATE TABLE IF NOT EXISTS projects (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL,
+        tags TEXT NOT NULL,
+        link TEXT,
+        repo TEXT,
+        created_at TEXT DEFAULT (datetime('now'))
+      );
 
-export const db = drizzle(sqlite, { schema });
+      CREATE TABLE IF NOT EXISTS messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        message TEXT NOT NULL,
+        read INTEGER DEFAULT 0,
+        created_at TEXT DEFAULT (datetime('now'))
+      );
+    `,
+    )
+    .catch((err) => console.error("LibSQL table initialization warning:", err));
+}
+
+export const db = drizzle(client, { schema });

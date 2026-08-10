@@ -12,11 +12,7 @@ async function isAuthorized() {
 
 export async function GET() {
   try {
-    const allProjects = db
-      .select()
-      .from(projects)
-      .orderBy(desc(projects.id))
-      .all();
+    const allProjects = await db.select().from(projects).orderBy(desc(projects.id));
     const formatted = allProjects.map((p) => {
       let parsedTags: string[] = [];
       try {
@@ -29,45 +25,33 @@ export async function GET() {
 
     return NextResponse.json({ success: true, projects: formatted });
   } catch {
-    return NextResponse.json(
-      { success: false, error: "Failed to fetch projects" },
-      { status: 500 },
-    );
+    return NextResponse.json({ success: false, error: "Failed to fetch projects" }, { status: 500 });
   }
 }
 
 export async function POST(request: Request) {
   if (!(await isAuthorized())) {
-    return NextResponse.json(
-      { success: false, error: "Unauthorized" },
-      { status: 401 },
-    );
+    return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
   }
 
   try {
     const { title, description, tags, link, repo } = await request.json();
 
     if (!title || !description || !tags) {
-      return NextResponse.json(
-        { success: false, error: "Title, description, and tags are required" },
-        { status: 400 },
-      );
+      return NextResponse.json({ success: false, error: "Title, description, and tags are required" }, { status: 400 });
     }
 
     let tagsString: string;
     if (Array.isArray(tags)) {
       tagsString = JSON.stringify(tags);
     } else if (typeof tags === "string") {
-      const parsedArray = tags
-        .split(",")
-        .map((t: string) => t.trim())
-        .filter(Boolean);
+      const parsedArray = tags.split(",").map((t: string) => t.trim()).filter(Boolean);
       tagsString = JSON.stringify(parsedArray);
     } else {
       tagsString = JSON.stringify([]);
     }
 
-    const inserted = db
+    const [inserted] = await db
       .insert(projects)
       .values({
         title,
@@ -76,24 +60,17 @@ export async function POST(request: Request) {
         link: link || null,
         repo: repo || null,
       })
-      .returning()
-      .get();
+      .returning();
 
     return NextResponse.json({ success: true, project: inserted });
   } catch {
-    return NextResponse.json(
-      { success: false, error: "Failed to create project" },
-      { status: 500 },
-    );
+    return NextResponse.json({ success: false, error: "Failed to create project" }, { status: 500 });
   }
 }
 
 export async function DELETE(request: Request) {
   if (!(await isAuthorized())) {
-    return NextResponse.json(
-      { success: false, error: "Unauthorized" },
-      { status: 401 },
-    );
+    return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
   }
 
   try {
@@ -101,23 +78,14 @@ export async function DELETE(request: Request) {
     const idParam = searchParams.get("id");
 
     if (!idParam) {
-      return NextResponse.json(
-        { success: false, error: "Project ID is required" },
-        { status: 400 },
-      );
+      return NextResponse.json({ success: false, error: "Project ID is required" }, { status: 400 });
     }
 
     const id = parseInt(idParam, 10);
-    db.delete(projects).where(eq(projects.id, id)).run();
+    await db.delete(projects).where(eq(projects.id, id));
 
-    return NextResponse.json({
-      success: true,
-      message: "Project deleted successfully",
-    });
+    return NextResponse.json({ success: true, message: "Project deleted successfully" });
   } catch {
-    return NextResponse.json(
-      { success: false, error: "Failed to delete project" },
-      { status: 500 },
-    );
+    return NextResponse.json({ success: false, error: "Failed to delete project" }, { status: 500 });
   }
 }

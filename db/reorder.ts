@@ -178,11 +178,11 @@ const orderedProjects = [
 ];
 
 async function reorder() {
-  console.log("Re-ordering database projects...");
-  db.delete(projects).run();
+  console.log("Re-ordering database projects via libSQL...");
+  await db.delete(projects);
 
   for (const item of orderedProjects) {
-    db.insert(projects).values(item).run();
+    await db.insert(projects).values(item);
   }
   console.log("Database reordered successfully!");
 }

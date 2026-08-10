@@ -12,8 +12,8 @@
     "db:seed": "npx tsx db/seed.ts"
   },
   "dependencies": {
+    "@libsql/client": "^0.17.4",
     "@tailwindcss/postcss": "^4.3.3",
-    "better-sqlite3": "^13.0.3",
     "drizzle-orm": "^0.45.2",
     "framer-motion": "^12.12.1",
     "lucide-react": "^0.511.0",
@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
-    "@types/better-sqlite3": "^9.6.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "drizzle-kit": "^0.31.10",

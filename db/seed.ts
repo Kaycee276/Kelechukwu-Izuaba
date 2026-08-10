@@ -159,10 +159,10 @@ const initialProjects = [
 
 async function seed() {
   console.log("Seeding database...");
-  const existing = db.select().from(projects).all();
+  const existing = await db.select().from(projects);
   if (existing.length === 0) {
     for (const project of initialProjects) {
-      db.insert(projects).values(project).run();
+      await db.insert(projects).values(project);
     }
     console.log("Database seeded successfully with initial projects!");
   } else {
