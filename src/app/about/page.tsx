@@ -76,44 +76,44 @@ export default function AboutPage() {
       variants={staggerContainer()}
       initial="hidden"
       animate="show"
-      className="h-full flex items-center justify-center px-6 py-12 relative"
+      className="h-full w-full flex items-center justify-center overflow-hidden px-4 sm:px-6 relative"
     >
       {/* Toolbox Modal */}
       {isToolboxOpen && <Toolbox tools={tools} toggleToolbox={toggleToolbox} />}
 
-      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-12 items-center p-6 md:p-10 rounded-3xl ">
+      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-6 lg:gap-8 items-center max-h-[85vh]">
         {/* Left Column - Image */}
         <motion.div
           variants={fadeIn("right", "spring", 0.2, 1)}
-          className="hidden md:block"
+          className="hidden md:flex justify-center"
         >
-          <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/20 shadow-lg">
+          <div className="relative aspect-square w-full max-w-[320px] lg:max-w-[360px] overflow-hidden rounded-xl border border-white/20 shadow-xl">
             <motion.img
               src="/image-1.jpeg"
               alt="Profile"
               className="w-full h-full object-cover"
               whileHover={{ scale: 1.03 }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
         </motion.div>
 
         {/* Right Column - Content */}
         <motion.div
           variants={staggerContainer(0.1, 0.2)}
-          className="flex flex-col gap-6"
+          className="flex flex-col justify-center gap-3 sm:gap-4"
         >
           <motion.div variants={textVariant(0.2)}>
-            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-wide">
               About Me
             </h1>
           </motion.div>
 
           <motion.div
             variants={fadeIn("left", "spring", 0.4, 1)}
-            className="space-y-4"
+            className="space-y-3"
           >
-            <div className="text-xs sm:text-sm text-gray-300 space-y-4 leading-relaxed">
+            <div className="text-xs sm:text-sm text-gray-300 space-y-2.5 leading-relaxed">
               <p>
                 I'm{" "}
                 <span className="uppercase font-semibold text-white">
@@ -137,14 +137,15 @@ export default function AboutPage() {
               </p>
             </div>
           </motion.div>
-          <motion.button
-            onClick={toggleToolbox}
-            variants={fadeIn("up", "spring", 0.2, 1)}
-            whileTap={{ scale: 0.95 }}
-            className="mt-2 px-6 py-3 bg-white/5 rounded-xl text-white text-sm cursor-pointer hover:bg-white/10 transition-all"
-          >
-            View My Toolbox
-          </motion.button>
+
+          <motion.div variants={fadeIn("up", "spring", 0.2, 1)} className="pt-1">
+            <button
+              onClick={toggleToolbox}
+              className="px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-white text-xs sm:text-sm cursor-pointer hover:bg-white/10 transition-all shadow-md"
+            >
+              View My Toolbox
+            </button>
+          </motion.div>
         </motion.div>
       </div>
     </motion.div>
