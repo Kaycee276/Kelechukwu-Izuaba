@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeIn, textVariant } from "@/utils/motion";
 
@@ -17,16 +18,51 @@ export default function ProjectsClient({
 }: {
   projects: ProjectItem[];
 }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const containerScroll = containerRef.current?.scrollTop || 0;
+      const mainElement = containerRef.current?.closest("main");
+      const mainScroll = mainElement?.scrollTop || 0;
+
+      if (containerScroll > 20 || mainScroll > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    const containerEl = containerRef.current;
+    const mainEl = containerRef.current?.closest("main");
+
+    containerEl?.addEventListener("scroll", handleScroll);
+    mainEl?.addEventListener("scroll", handleScroll);
+
+    return () => {
+      containerEl?.removeEventListener("scroll", handleScroll);
+      mainEl?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <motion.div
+      ref={containerRef}
       variants={staggerContainer()}
       initial="hidden"
       animate="show"
       className="h-full overflow-y-auto py-10 px-4 sm:px-6 lg:px-8 custom-scroll space-y-8"
     >
       <div className="max-w-6xl mx-auto flex flex-col gap-10">
-        {/* Header */}
-        <header className="sticky top-0 z-50 py-6 px-4 rounded-2xl flex flex-col gap-4 items-center backdrop-blur-md bg-black/60 border border-white/10 shadow-lg transition-all">
+        {/* Header - Blur background only displays when scrolled */}
+        <header
+          className={`sticky top-0 z-50 py-6 px-4 rounded-2xl flex flex-col gap-4 items-center transition-all duration-300 ${
+            isScrolled
+              ? "backdrop-blur-md bg-black/60 border border-white/10 shadow-lg"
+              : "bg-transparent border border-transparent shadow-none"
+          }`}
+        >
           <motion.div variants={textVariant(0.2)} className="text-center">
             <h1 className="text-4xl md:text-5xl capitalize font-bold text-white mb-2 tracking-wide">
               Projects
@@ -40,7 +76,7 @@ export default function ProjectsClient({
           </motion.p>
         </header>
 
-        {/* Projects Grid with enhanced card padding */}
+        {/* Projects Grid */}
         <motion.div
           variants={staggerContainer(0.1, 0.2)}
           className="grid grid-cols-1 md:grid-cols-2 gap-10"
@@ -65,14 +101,14 @@ export default function ProjectsClient({
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 text-xs bg-white/10 text-orange-300 rounded-lg "
+                      className="px-3 py-1 text-xs bg-white/10 text-orange-300 rounded-lg"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                {/* Buttons with generous padding */}
+                {/* Buttons */}
                 <div className="flex flex-wrap gap-4 pt-2">
                   {project.link && (
                     <motion.a
