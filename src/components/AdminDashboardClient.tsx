@@ -3,7 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Trash2, ExternalLink, Github, LogOut, CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  Trash2,
+  ExternalLink,
+  Github,
+  LogOut,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 
 export interface ProjectData {
   id: number;
@@ -15,17 +22,25 @@ export interface ProjectData {
   createdAt?: string | null;
 }
 
-export default function AdminDashboardClient({ initialProjects }: { initialProjects: ProjectData[] }) {
-  const [projectList, setProjectList] = useState<ProjectData[]>(initialProjects);
+export default function AdminDashboardClient({
+  initialProjects,
+}: {
+  initialProjects: ProjectData[];
+}) {
+  const [projectList, setProjectList] =
+    useState<ProjectData[]>(initialProjects);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [link, setLink] = useState("");
   const [repo, setRepo] = useState("");
-  
+
   const [submitting, setSubmitting] = useState(false);
   const [deletingId, setDeletingId] = useState<number | null>(null);
-  const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [statusMessage, setStatusMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   const router = useRouter();
 
@@ -53,7 +68,9 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
         try {
           parsedTags = JSON.parse(data.project.tags);
         } catch {
-          parsedTags = data.project.tags.split(",").map((t: string) => t.trim());
+          parsedTags = data.project.tags
+            .split(",")
+            .map((t: string) => t.trim());
         }
 
         setProjectList([
@@ -70,13 +87,22 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
         setLink("");
         setRepo("");
 
-        setStatusMessage({ type: "success", text: "Project added successfully to SQLite DB!" });
+        setStatusMessage({
+          type: "success",
+          text: "Project added successfully to SQLite DB!",
+        });
         router.refresh();
       } else {
-        setStatusMessage({ type: "error", text: data.error || "Failed to create project" });
+        setStatusMessage({
+          type: "error",
+          text: data.error || "Failed to create project",
+        });
       }
     } catch {
-      setStatusMessage({ type: "error", text: "An error occurred while adding the project" });
+      setStatusMessage({
+        type: "error",
+        text: "An error occurred while adding the project",
+      });
     } finally {
       setSubmitting(false);
     }
@@ -96,13 +122,22 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
       const data = await res.json();
       if (data.success) {
         setProjectList((prev) => prev.filter((p) => p.id !== id));
-        setStatusMessage({ type: "success", text: "Project deleted successfully!" });
+        setStatusMessage({
+          type: "success",
+          text: "Project deleted successfully!",
+        });
         router.refresh();
       } else {
-        setStatusMessage({ type: "error", text: data.error || "Failed to delete project" });
+        setStatusMessage({
+          type: "error",
+          text: data.error || "Failed to delete project",
+        });
       }
     } catch {
-      setStatusMessage({ type: "error", text: "An error occurred while deleting" });
+      setStatusMessage({
+        type: "error",
+        text: "An error occurred while deleting",
+      });
     } finally {
       setDeletingId(null);
     }
@@ -122,7 +157,9 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
           <h1 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2.5 tracking-wide">
             Admin Vault
           </h1>
-          <p className="text-xs text-gray-400">Manage your portfolio projects (SQLite + Drizzle ORM)</p>
+          <p className="text-xs text-gray-400">
+            Manage your portfolio projects (SQLite + Drizzle ORM)
+          </p>
         </div>
 
         <div className="flex items-center gap-3">
@@ -170,10 +207,7 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
         {/* Form Column */}
         <div className="lg:col-span-1">
           <div className="p-6 rounded-sm border border-white/15 bg-black/70 backdrop-blur-xl sticky top-4 space-y-5">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Plus className="w-4 h-4 text-[#e85d04]" />
-              Add New Project
-            </h2>
+            <h2 className="text-sm font-bold text-white ">Add New Project</h2>
 
             <form onSubmit={handleCreate} className="space-y-4">
               <div className="space-y-1">
@@ -295,7 +329,10 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
                 <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10">
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="px-2.5 py-0.5 text-[10px] bg-white/10 text-orange-300 rounded-sm border border-white/5">
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 text-[10px] bg-white/10 text-orange-300 rounded-sm border border-white/5"
+                      >
                         {tag}
                       </span>
                     ))}
