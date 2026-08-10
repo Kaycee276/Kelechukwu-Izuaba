@@ -1,4 +1,4 @@
-import { db } from "./index";
+import { db, client } from "./index";
 import { projects } from "./schema";
 
 const orderedProjects = [
@@ -178,13 +178,35 @@ const orderedProjects = [
 ];
 
 async function reorder() {
-  console.log("Re-ordering database projects via libSQL...");
+  console.log("Creating tables and seeding Turso Cloud Database...");
+
+  await client.executeMultiple(`
+    CREATE TABLE IF NOT EXISTS projects (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      description TEXT NOT NULL,
+      tags TEXT NOT NULL,
+      link TEXT,
+      repo TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS messages (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      message TEXT NOT NULL,
+      read INTEGER DEFAULT 0,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+  `);
+
   await db.delete(projects);
 
   for (const item of orderedProjects) {
     await db.insert(projects).values(item);
   }
-  console.log("Database reordered successfully!");
+  console.log("Turso Cloud Database seeded with 12 projects successfully!");
 }
 
 reorder().catch(console.error);
