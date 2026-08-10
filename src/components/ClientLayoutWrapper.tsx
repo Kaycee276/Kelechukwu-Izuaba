@@ -53,10 +53,10 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
 				<div className="w-full h-full backdrop-blur-md bg-black/75" />
 			</div>
 
-			{/* 3-Column Layout Preserved across ALL screens */}
-			<div className="relative z-20 flex-1 flex flex-row justify-between p-2 sm:p-4 md:p-6 lg:p-8 gap-1 sm:gap-3 md:gap-6 overflow-hidden">
-				{/* Left Navigation (Scaled on small screens) */}
-				<nav className="flex items-center z-30 px-1 sm:px-2 md:px-4">
+			{/* 3-Column Layout - Navigation starts from left end of screen */}
+			<div className="relative z-20 flex-1 flex flex-row justify-between pl-0 pr-2 sm:pr-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-6 gap-1 sm:gap-3 md:gap-6 overflow-hidden">
+				{/* Left Navigation (Starts directly from left end of screen) */}
+				<nav className="flex items-center z-30 pl-0 pr-1 sm:px-2 md:px-4">
 					<ul className="flex flex-col h-full justify-around py-2 sm:py-4">
 						{navItems.map((item, index) => (
 							<motion.li

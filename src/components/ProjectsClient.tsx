@@ -101,7 +101,7 @@ export default function ProjectsClient({
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 text-xs bg-white/10 text-orange-300 rounded-sm border border-white/10"
+                      className="px-2 py-0.5 sm:px-3 sm:py-1 text-[9px] sm:text-xs bg-white/10 text-orange-300 rounded-sm border border-white/10"
                     >
                       {tag}
                     </span>
