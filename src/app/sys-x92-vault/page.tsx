@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { db } from "@db/index";
 import { projects, messages } from "@db/schema";
 import { desc } from "drizzle-orm";
-import AdminDashboardClient from "@/components/AdminDashboardClient";
+import AdminDashboardClient, { ProjectData, MessageData } from "@/components/AdminDashboardClient";
 
 export const revalidate = 0;
 
@@ -15,31 +15,47 @@ export default async function SecretAdminPage() {
     redirect("/sys-x92-vault/login");
   }
 
-  const rawProjects = await db.select().from(projects).orderBy(desc(projects.id));
-  const rawMessages = await db.select().from(messages).orderBy(desc(messages.id));
+  let formattedProjects: ProjectData[] = [];
+  let formattedMessages: MessageData[] = [];
 
-  const formattedProjects = rawProjects.map((p) => {
-    let parsedTags: string[] = [];
-    try {
-      parsedTags = JSON.parse(p.tags);
-    } catch {
-      parsedTags = p.tags.split(",").map((t) => t.trim());
+  try {
+    const rawProjects = await db.select().from(projects).orderBy(desc(projects.id));
+    if (rawProjects && rawProjects.length > 0) {
+      formattedProjects = rawProjects.map((p) => {
+        let parsedTags: string[] = [];
+        try {
+          parsedTags = JSON.parse(p.tags);
+        } catch {
+          parsedTags = p.tags.split(",").map((t) => t.trim());
+        }
+        return {
+          id: p.id,
+          title: p.title,
+          description: p.description,
+          tags: parsedTags,
+          link: p.link,
+          repo: p.repo,
+          createdAt: p.createdAt,
+        };
+      });
     }
-    return {
-      id: p.id,
-      title: p.title,
-      description: p.description,
-      tags: parsedTags,
-      link: p.link,
-      repo: p.repo,
-      createdAt: p.createdAt,
-    };
-  });
+  } catch (err) {
+    console.error("Admin Vault projects query fallback:", err);
+  }
+
+  try {
+    const rawMessages = await db.select().from(messages).orderBy(desc(messages.id));
+    if (rawMessages && rawMessages.length > 0) {
+      formattedMessages = rawMessages;
+    }
+  } catch (err) {
+    console.error("Admin Vault messages query fallback:", err);
+  }
 
   return (
     <AdminDashboardClient
       initialProjects={formattedProjects}
-      initialMessages={rawMessages}
+      initialMessages={formattedMessages}
     />
   );
 }
