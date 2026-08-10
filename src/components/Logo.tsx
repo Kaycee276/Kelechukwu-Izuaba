@@ -1,7 +1,7 @@
 const Logo = () => {
 	return (
-		<div className="p-4 sm:p-6 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 grid place-items-center bg-black">
-			<p className="text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-wider">
+		<div className="p-2 sm:p-4 md:p-6 w-14 h-14 sm:w-24 sm:h-24 md:w-32 md:h-32 grid place-items-center bg-black border border-white/10 rounded-sm shadow-md">
+			<p className="text-sm sm:text-2xl md:text-3xl text-white font-bold tracking-wider">
 				kaycee
 			</p>
 		</div>

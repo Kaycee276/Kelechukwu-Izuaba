@@ -11,24 +11,24 @@ const socials: SocialLink[] = [
 	{
 		name: "GitHub",
 		url: "https://github.com/Kaycee276",
-		icon: <FaGithub className="text-xl sm:text-2xl" />,
+		icon: <FaGithub className="text-sm sm:text-lg md:text-xl" />,
 	},
 	{
 		name: "LinkedIn",
 		url: "https://www.linkedin.com/in/kenneth-kelechukwu-izuaba-245658294/",
-		icon: <FaLinkedin className="text-xl sm:text-2xl" />,
+		icon: <FaLinkedin className="text-sm sm:text-lg md:text-xl" />,
 	},
 	{
 		name: "Twitter",
 		url: "https://x.com/kc_deblocksmith",
-		icon: <FaTwitter className="text-xl sm:text-2xl" />,
+		icon: <FaTwitter className="text-sm sm:text-lg md:text-xl" />,
 	},
 ];
 
 export default function Socials({ horizontal = false }: { horizontal?: boolean }) {
 	return (
-		<div className={`flex items-center gap-4 ${horizontal ? "flex-row" : "flex-col p-4"}`}>
-			<ul className={`flex ${horizontal ? "flex-row gap-6" : "flex-col gap-6"}`}>
+		<div className={`flex items-center ${horizontal ? "flex-row gap-4" : "flex-col gap-2 sm:gap-3 p-1 sm:p-2"}`}>
+			<ul className={`flex ${horizontal ? "flex-row gap-4 sm:gap-6" : "flex-col gap-3 sm:gap-4 md:gap-6"}`}>
 				{socials.map((social) => (
 					<li key={social.name}>
 						<a
@@ -42,7 +42,7 @@ export default function Socials({ horizontal = false }: { horizontal?: boolean }
 					</li>
 				))}
 			</ul>
-			{!horizontal && <div className="w-[3px] h-8 bg-white/70"></div>}
+			{!horizontal && <div className="w-[2px] h-4 sm:h-6 md:h-8 bg-white/70"></div>}
 		</div>
 	);
 }
