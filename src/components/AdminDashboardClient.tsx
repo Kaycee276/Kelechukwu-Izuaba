@@ -44,13 +44,9 @@ export default function AdminDashboardClient({
   initialProjects: ProjectData[];
   initialMessages?: MessageData[];
 }) {
-  const [activeTab, setActiveTab] = useState<"projects" | "messages">(
-    "projects",
-  );
-  const [projectList, setProjectList] =
-    useState<ProjectData[]>(initialProjects);
-  const [messageList, setMessageList] =
-    useState<MessageData[]>(initialMessages);
+  const [activeTab, setActiveTab] = useState<"projects" | "messages">("projects");
+  const [projectList, setProjectList] = useState<ProjectData[]>(initialProjects);
+  const [messageList, setMessageList] = useState<MessageData[]>(initialMessages);
 
   // Form states for project creation
   const [title, setTitle] = useState("");
@@ -61,10 +57,7 @@ export default function AdminDashboardClient({
 
   const [submitting, setSubmitting] = useState(false);
   const [deletingId, setDeletingId] = useState<number | null>(null);
-  const [statusMessage, setStatusMessage] = useState<{
-    type: "success" | "error";
-    text: string;
-  } | null>(null);
+  const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const router = useRouter();
 
@@ -94,9 +87,7 @@ export default function AdminDashboardClient({
         try {
           parsedTags = JSON.parse(data.project.tags);
         } catch {
-          parsedTags = data.project.tags
-            .split(",")
-            .map((t: string) => t.trim());
+          parsedTags = data.project.tags.split(",").map((t: string) => t.trim());
         }
 
         setProjectList([
@@ -113,22 +104,13 @@ export default function AdminDashboardClient({
         setLink("");
         setRepo("");
 
-        setStatusMessage({
-          type: "success",
-          text: "Project added successfully to SQLite DB!",
-        });
+        setStatusMessage({ type: "success", text: "Project added successfully to SQLite DB!" });
         router.refresh();
       } else {
-        setStatusMessage({
-          type: "error",
-          text: data.error || "Failed to create project",
-        });
+        setStatusMessage({ type: "error", text: data.error || "Failed to create project" });
       }
     } catch {
-      setStatusMessage({
-        type: "error",
-        text: "An error occurred while adding the project",
-      });
+      setStatusMessage({ type: "error", text: "An error occurred while adding the project" });
     } finally {
       setSubmitting(false);
     }
@@ -148,38 +130,26 @@ export default function AdminDashboardClient({
       const data = await res.json();
       if (data.success) {
         setProjectList((prev) => prev.filter((p) => p.id !== id));
-        setStatusMessage({
-          type: "success",
-          text: "Project deleted successfully!",
-        });
+        setStatusMessage({ type: "success", text: "Project deleted successfully!" });
         router.refresh();
       } else {
-        setStatusMessage({
-          type: "error",
-          text: data.error || "Failed to delete project",
-        });
+        setStatusMessage({ type: "error", text: data.error || "Failed to delete project" });
       }
     } catch {
-      setStatusMessage({
-        type: "error",
-        text: "An error occurred while deleting project",
-      });
+      setStatusMessage({ type: "error", text: "An error occurred while deleting project" });
     } finally {
       setDeletingId(null);
     }
   };
 
-  const handleToggleMessageRead = async (
-    id: number,
-    currentRead: number | null,
-  ) => {
+  const handleToggleMessageRead = async (id: number, currentRead: number | null) => {
     const newReadStatus = currentRead ? 0 : 1;
     setMessageList((prev) =>
-      prev.map((m) => (m.id === id ? { ...m, read: newReadStatus } : m)),
+      prev.map((m) => (m.id === id ? { ...m, read: newReadStatus } : m))
     );
 
     try {
-      await fetch("/api/messages", {
+      await fetch("/api/sys-x92-vault-db/messages", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, read: newReadStatus }),
@@ -193,16 +163,13 @@ export default function AdminDashboardClient({
     if (!confirm("Delete this contact message permanently?")) return;
 
     try {
-      const res = await fetch(`/api/messages?id=${id}`, {
+      const res = await fetch(`/api/sys-x92-vault-db/messages?id=${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
       if (data.success) {
         setMessageList((prev) => prev.filter((m) => m.id !== id));
-        setStatusMessage({
-          type: "success",
-          text: "Message deleted from SQLite DB!",
-        });
+        setStatusMessage({ type: "success", text: "Message deleted from SQLite DB!" });
       }
     } catch {
       setStatusMessage({ type: "error", text: "Failed to delete message" });
@@ -210,7 +177,7 @@ export default function AdminDashboardClient({
   };
 
   const handleLogout = async () => {
-    await fetch("/api/admin/logout", { method: "POST" });
+    await fetch("/api/sys-x92-vault-auth/logout", { method: "POST" });
     router.push("/sys-x92-vault/login");
     router.refresh();
   };
@@ -223,9 +190,7 @@ export default function AdminDashboardClient({
           <h1 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2.5 tracking-wide">
             Admin Vault
           </h1>
-          <p className="text-xs text-gray-400">
-            Manage projects & view contact messages (SQLite DB)
-          </p>
+          <p className="text-xs text-gray-400">Manage projects & view contact messages (SQLite DB)</p>
         </div>
 
         <div className="flex items-center gap-3">
@@ -430,10 +395,7 @@ export default function AdminDashboardClient({
                   <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10">
                     <div className="flex flex-wrap gap-1.5">
                       {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2.5 py-0.5 text-[10px] bg-white/10 text-orange-300 rounded-sm border border-white/5 font-mono"
-                        >
+                        <span key={tag} className="px-2.5 py-0.5 text-[10px] bg-white/10 text-orange-300 rounded-sm border border-white/5 font-mono">
                           {tag}
                         </span>
                       ))}
@@ -483,9 +445,7 @@ export default function AdminDashboardClient({
           {messageList.length === 0 ? (
             <div className="p-12 text-center border border-white/10 bg-black/40 rounded-sm space-y-2">
               <Mail className="w-8 h-8 text-gray-500 mx-auto" />
-              <p className="text-sm text-gray-400">
-                No contact messages received yet.
-              </p>
+              <p className="text-sm text-gray-400">No contact messages received yet.</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -505,12 +465,8 @@ export default function AdminDashboardClient({
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
                     <div>
                       <div className="flex items-center gap-2.5">
-                        <span className="font-bold text-white text-sm">
-                          {msg.name}
-                        </span>
-                        <span className="text-xs text-orange-400 font-mono">
-                          &lt;{msg.email}&gt;
-                        </span>
+                        <span className="font-bold text-white text-sm">{msg.name}</span>
+                        <span className="text-xs text-orange-400 font-mono">&lt;{msg.email}&gt;</span>
                         <span
                           className={`px-2 py-0.5 text-[9px] rounded-sm font-semibold uppercase ${
                             msg.read
@@ -538,9 +494,7 @@ export default function AdminDashboardClient({
                       </a>
 
                       <button
-                        onClick={() =>
-                          handleToggleMessageRead(msg.id, msg.read)
-                        }
+                        onClick={() => handleToggleMessageRead(msg.id, msg.read)}
                         className="px-3 py-1.5 text-xs font-medium bg-white/5 hover:bg-white/15 border border-white/15 rounded-sm text-white transition-colors flex items-center gap-1.5 cursor-pointer"
                       >
                         {msg.read ? (
