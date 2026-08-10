@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaFileAlt } from "react-icons/fa";
 
 export interface SocialLink {
 	name: string;
@@ -23,6 +23,11 @@ const socials: SocialLink[] = [
 		url: "https://x.com/kc_deblocksmith",
 		icon: <FaTwitter className="text-sm sm:text-lg md:text-xl" />,
 	},
+	{
+		name: "CV / Resume",
+		url: "https://docs.google.com/document/d/1c0acDeoCnhHPdQUknvOdlBjG2Ka4uGTjT3YnJuJdGQg/edit?usp=sharing",
+		icon: <FaFileAlt className="text-sm sm:text-lg md:text-xl" />,
+	},
 ];
 
 export default function Socials({ horizontal = false }: { horizontal?: boolean }) {
@@ -35,6 +40,7 @@ export default function Socials({ horizontal = false }: { horizontal?: boolean }
 							href={social.url}
 							target="_blank"
 							rel="noopener noreferrer"
+							title={social.name}
 							className="text-white hover:text-[#e85d04] transition-colors"
 						>
 							{social.icon}
