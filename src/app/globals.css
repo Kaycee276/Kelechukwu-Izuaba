@@ -4,8 +4,7 @@
 * {
 	font-weight: 300;
 	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+	scrollbar-width: none;
 }
 
 html, body {
@@ -76,8 +75,4 @@ li:hover {
 
 .custom-scroll::-webkit-scrollbar {
 	display: none;
-}
-
-* {
-	scrollbar-width: none;
 }

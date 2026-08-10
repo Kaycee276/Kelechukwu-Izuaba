@@ -23,26 +23,26 @@ export default function ProjectsClient({
 
   useEffect(() => {
     const handleScroll = () => {
-      const containerScroll = containerRef.current?.scrollTop || 0;
       const mainElement = containerRef.current?.closest("main");
       const mainScroll = mainElement?.scrollTop || 0;
+      const containerScroll = containerRef.current?.scrollTop || 0;
 
-      if (containerScroll > 20 || mainScroll > 20) {
+      if (mainScroll > 20 || containerScroll > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
 
-    const containerEl = containerRef.current;
     const mainEl = containerRef.current?.closest("main");
+    const containerEl = containerRef.current;
 
-    containerEl?.addEventListener("scroll", handleScroll);
     mainEl?.addEventListener("scroll", handleScroll);
+    containerEl?.addEventListener("scroll", handleScroll);
 
     return () => {
-      containerEl?.removeEventListener("scroll", handleScroll);
       mainEl?.removeEventListener("scroll", handleScroll);
+      containerEl?.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -52,14 +52,14 @@ export default function ProjectsClient({
       variants={staggerContainer()}
       initial="hidden"
       animate="show"
-      className="h-full overflow-y-auto py-10 px-4 sm:px-6 lg:px-8 custom-scroll space-y-8"
+      className="w-full min-h-full py-8 px-4 sm:px-6 lg:px-8 space-y-10"
     >
       <div className="max-w-6xl mx-auto flex flex-col gap-10">
         {/* Header - Blur background only displays when scrolled */}
         <header
-          className={`sticky top-0 z-50 py-6 px-4 rounded-2xl flex flex-col gap-4 items-center transition-all duration-300 ${
+          className={`sticky top-0 z-50 py-6 px-6 sm:px-8 rounded-2xl flex flex-col gap-4 items-center transition-all duration-300 ${
             isScrolled
-              ? "backdrop-blur-md bg-black/60 border border-white/10 shadow-lg"
+              ? "backdrop-blur-md bg-black/70 border border-white/15 shadow-2xl"
               : "bg-transparent border border-transparent shadow-none"
           }`}
         >
@@ -76,18 +76,18 @@ export default function ProjectsClient({
           </motion.p>
         </header>
 
-        {/* Projects Grid */}
+        {/* Projects Grid with ample card padding */}
         <motion.div
           variants={staggerContainer(0.1, 0.2)}
-          className="grid grid-cols-1 md:grid-cols-2 gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 gap-10 pb-12"
         >
           {projects.map((project, index) => (
             <motion.div
               key={project.id || project.title}
               variants={fadeIn("up", "spring", index * 0.1, 0.75)}
-              className="rounded-2xl overflow-hidden backdrop-blur-md bg-black/50 transition-all hover:bg-white/10"
+              className="rounded-2xl overflow-hidden backdrop-blur-md bg-black/50 border border-white/15 transition-all hover:bg-white/10 hover:border-orange-500/50 shadow-xl"
             >
-              <div className="p-8 space-y-6">
+              <div className="p-8 md:p-10 space-y-6">
                 <div>
                   <h3 className="uppercase font-bold text-[#e85d04] text-xl mb-3 tracking-wide">
                     {project.title}
@@ -101,7 +101,7 @@ export default function ProjectsClient({
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 text-xs bg-white/10 text-orange-300 rounded-lg"
+                      className="px-3.5 py-1.5 text-xs bg-white/10 text-orange-300 rounded-lg border border-white/10"
                     >
                       {tag}
                     </span>
@@ -109,14 +109,14 @@ export default function ProjectsClient({
                 </div>
 
                 {/* Buttons */}
-                <div className="flex flex-wrap gap-4 pt-2">
+                <div className="flex flex-wrap gap-4 pt-4">
                   {project.link && (
                     <motion.a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileTap={{ scale: 0.95 }}
-                      className="group inline-flex items-center px-5 py-2.5 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-orange-500 text-white hover:text-orange-400 rounded-xl bg-black/40 shadow"
+                      className="group inline-flex items-center px-5 py-3 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-orange-500 text-white hover:text-orange-400 rounded-xl bg-black/40 shadow-md"
                     >
                       View Project
                       <motion.svg
@@ -140,7 +140,7 @@ export default function ProjectsClient({
                       target="_blank"
                       rel="noopener noreferrer"
                       whileTap={{ scale: 0.95 }}
-                      className="group inline-flex items-center px-5 py-2.5 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-gray-400 text-white hover:text-gray-300 rounded-xl bg-black/40 shadow"
+                      className="group inline-flex items-center px-5 py-3 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-gray-400 text-white hover:text-gray-300 rounded-xl bg-black/40 shadow-md"
                     >
                       View Repo
                       <motion.svg
