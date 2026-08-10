@@ -17,56 +17,42 @@ export default function AboutPage() {
 
   const tools: Tools[] = [
     {
-      category: "Frontend",
+      category: "Programming",
+      items: [
+        "TypeScript",
+        "JavaScript",
+        "Solidity",
+        "Move",
+        "Rust",
+        "Python",
+      ],
+    },
+    {
+      category: "Frameworks & AI",
       items: [
         "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "Javascript",
         "Next.js",
-        "AppKit",
-        "Zustand",
-        "React Query",
-        "Recharts",
-        "Vite",
-        "Webpack",
-      ],
-    },
-    {
-      category: "Backend",
-      items: [
+        "TailwindCSS",
         "Node.js",
         "Express",
-        "PostgreSQL",
-        "SQLite",
-        "REST APIs",
-        "GraphQL",
-        "Prisma",
-        "Drizzle ORM",
-        "Supabase",
-        "Socket.io",
-        "Redis",
-        "JWT",
-        "OAuth",
-        "Microservices",
-        "Docker",
-        "CI/CD",
+        "LangChain",
+        "KeeperHub",
+        "Claude API",
+        "Framer Motion",
+        "Zustand",
       ],
     },
     {
-      category: "Web3",
+      category: "Web3 & DevOps",
       items: [
-        "Solidity",
+        "Hardhat",
         "Ethers.js",
-        "Smart Contracts",
-        "Foundry",
-        "Web3.js",
-        "IPFS",
-        "Metamask",
-        "OpenZeppelin",
-        "Gas Optimization",
-        "Tokenomics",
-        "Smart Contract Security",
+        "PostgreSQL",
+        "Supabase",
+        "SQLite",
+        "WebSockets",
+        "Git & GitHub",
+        "Solana / EVM",
       ],
     },
   ];
@@ -81,16 +67,16 @@ export default function AboutPage() {
       {/* Toolbox Modal */}
       {isToolboxOpen && <Toolbox tools={tools} toggleToolbox={toggleToolbox} />}
 
-      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-6 lg:gap-8 items-center max-h-[85vh] p-6 rounded-sm">
+      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-6 lg:gap-8 items-center max-h-[85vh] p-4 sm:p-6 rounded-sm">
         {/* Left Column - Image */}
         <motion.div
           variants={fadeIn("right", "spring", 0.2, 1)}
           className="hidden md:flex justify-center"
         >
-          <div className="relative aspect-square w-full max-w-[320px] lg:max-w-[360px] overflow-hidden rounded-sm border border-white/20 shadow-md">
+          <div className="relative aspect-square w-full max-w-[300px] lg:max-w-[340px] overflow-hidden rounded-sm border border-white/20 shadow-md">
             <motion.img
               src="/image-1.jpeg"
-              alt="Profile"
+              alt="Kenneth Kelechukwu Izuaba"
               className="w-full h-full object-cover"
               whileHover={{ scale: 1.03 }}
             />
@@ -98,42 +84,33 @@ export default function AboutPage() {
           </div>
         </motion.div>
 
-        {/* Right Column - Content */}
+        {/* Right Column - Content derived directly from CV */}
         <motion.div
           variants={staggerContainer(0.1, 0.2)}
-          className="flex flex-col justify-center gap-3 sm:gap-4"
+          className="flex flex-col justify-center gap-3"
         >
           <motion.div variants={textVariant(0.2)}>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-wide">
               About Me
             </h1>
+            <p className="text-xs text-[#e85d04] uppercase tracking-widest mt-1 font-semibold">
+              Full-Stack & Web3 Developer | Computer Science, UNN
+            </p>
           </motion.div>
 
           <motion.div
             variants={fadeIn("left", "spring", 0.4, 1)}
-            className="space-y-3"
+            className="space-y-2.5"
           >
-            <div className="text-xs sm:text-sm text-gray-300 space-y-2.5 leading-relaxed">
+            <div className="text-xs sm:text-sm text-gray-300 space-y-2 leading-relaxed">
               <p>
-                I'm{" "}
-                <span className="uppercase font-semibold text-white">
-                  Izuaba Kenneth Kelechukwu
-                </span>
-                . I design interfaces that move with purpose, React ecosystems
-                built in TypeScript where every animation serves a function and
-                every component balances beauty with performance.
+                I'm <span className="uppercase font-semibold text-white">Kenneth Kelechukwu Izuaba</span>, a Full-Stack & Web3 Developer pursuing a B.Sc. in Computer Science at the University of Nigeria, Nsukka.
               </p>
               <p>
-                The backend architecture is lean yet powerful: Node.js and
-                Next.js services with clean APIs, SQLite & Drizzle ORM queries,
-                and secure authentication flows. When working with Web3, I focus
-                on making blockchain interactions feel inevitable rather than
-                intimidating.
+                I engineer end-to-end applications spanning full-stack search engines at <span className="text-white font-medium">NSKAI</span>, autonomous AI agents leveraging <span className="text-white font-medium">Claude API</span> & <span className="text-white font-medium">KeeperHub</span>, and high-performance Web3 dapps built with TypeScript, React, Next.js, and Solidity.
               </p>
               <p>
-                Lately my work has involved bringing real-time media experiences
-                closer to the blockchain layer. Across the stack, I prioritize
-                solutions that are maintainable first, then magical.
+                From building trustless escrow chess platforms (<span className="text-white font-medium">Chesster</span>) to active open-source contributions across EVM & Solana ecosystems, I focus on clean architecture, type safety, and seamless user experiences.
               </p>
             </div>
           </motion.div>
@@ -143,7 +120,7 @@ export default function AboutPage() {
               onClick={toggleToolbox}
               className="px-4 py-2 bg-white/5 border border-white/20 rounded-sm text-white text-xs sm:text-sm cursor-pointer hover:bg-white/10 transition-all shadow-sm"
             >
-              View My Toolbox
+              View My Tech Stack & Skills
             </button>
           </motion.div>
         </motion.div>

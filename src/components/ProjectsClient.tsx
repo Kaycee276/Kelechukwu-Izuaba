@@ -85,7 +85,7 @@ export default function ProjectsClient({
             <motion.div
               key={project.id || project.title}
               variants={fadeIn("up", "spring", index * 0.1, 0.75)}
-              className="rounded-sm overflow-hidden backdrop-blur-md bg-black/50 border border-white/15 transition-all hover:bg-white/10 hover:border-orange-500/50 shadow-md"
+              className="rounded-sm overflow-hidden backdrop-blur-md bg-black/50 transition-all hover:bg-white/10"
             >
               <div className="p-6 md:p-8 space-y-5">
                 <div>
