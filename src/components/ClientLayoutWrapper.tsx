@@ -91,7 +91,7 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
 
 				{/* Main page content area with generous padding */}
 				<motion.main
-					className="flex-1 overflow-y-auto px-6 py-4 md:px-10 md:py-6 custom-scroll z-20"
+					className="flex-1 overflow-y-auto px-4 md:px-8 pt-0 pb-6 custom-scroll z-20"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1, transition: { delay: 0.2 } }}
 				>

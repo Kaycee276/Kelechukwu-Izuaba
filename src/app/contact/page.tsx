@@ -85,7 +85,7 @@ const StackedMessages = () => {
 								ease: [0.55, 0.085, 0.68, 0.53],
 							},
 						}}
-						className={`absolute w-full p-6 rounded-xl border border-white/20 backdrop-blur-md shadow-2xl bg-black/60`}
+						className={`absolute w-full p-6 rounded-sm border border-white/20 backdrop-blur-sm shadow-2xl bg-black/60`}
 						style={{
 							transformPerspective: 1000,
 						}}

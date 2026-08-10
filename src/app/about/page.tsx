@@ -81,13 +81,13 @@ export default function AboutPage() {
       {/* Toolbox Modal */}
       {isToolboxOpen && <Toolbox tools={tools} toggleToolbox={toggleToolbox} />}
 
-      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-6 lg:gap-8 items-center max-h-[85vh]">
+      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-6 lg:gap-8 items-center max-h-[85vh] p-6 rounded-sm">
         {/* Left Column - Image */}
         <motion.div
           variants={fadeIn("right", "spring", 0.2, 1)}
           className="hidden md:flex justify-center"
         >
-          <div className="relative aspect-square w-full max-w-[320px] lg:max-w-[360px] overflow-hidden rounded-xl border border-white/20 shadow-xl">
+          <div className="relative aspect-square w-full max-w-[320px] lg:max-w-[360px] overflow-hidden rounded-sm border border-white/20 shadow-md">
             <motion.img
               src="/image-1.jpeg"
               alt="Profile"
@@ -141,7 +141,7 @@ export default function AboutPage() {
           <motion.div variants={fadeIn("up", "spring", 0.2, 1)} className="pt-1">
             <button
               onClick={toggleToolbox}
-              className="px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-white text-xs sm:text-sm cursor-pointer hover:bg-white/10 transition-all shadow-md"
+              className="px-4 py-2 bg-white/5 border border-white/20 rounded-sm text-white text-xs sm:text-sm cursor-pointer hover:bg-white/10 transition-all shadow-sm"
             >
               View My Toolbox
             </button>

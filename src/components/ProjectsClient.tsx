@@ -27,7 +27,7 @@ export default function ProjectsClient({
       const mainScroll = mainElement?.scrollTop || 0;
       const containerScroll = containerRef.current?.scrollTop || 0;
 
-      if (mainScroll > 20 || containerScroll > 20) {
+      if (mainScroll > 15 || containerScroll > 15) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -52,71 +52,71 @@ export default function ProjectsClient({
       variants={staggerContainer()}
       initial="hidden"
       animate="show"
-      className="w-full min-h-full py-8 px-4 sm:px-6 lg:px-8 space-y-10"
+      className="w-full min-h-full px-4 sm:px-6 lg:px-8 space-y-6 pt-0"
     >
-      <div className="max-w-6xl mx-auto flex flex-col gap-10">
-        {/* Header - Blur background only displays when scrolled */}
+      <div className="max-w-6xl mx-auto flex flex-col gap-8">
+        {/* Header - Touches top of screen with dynamic blur on scroll */}
         <header
-          className={`sticky top-0 z-50 py-6 px-6 sm:px-8 rounded-2xl flex flex-col gap-4 items-center transition-all duration-300 ${
+          className={`sticky top-0 z-50 w-full pt-6 pb-4 px-6 sm:px-8 flex flex-col gap-3 items-center transition-all duration-300 rounded-none ${
             isScrolled
-              ? "backdrop-blur-md bg-black/70 border border-white/15 shadow-2xl"
-              : "bg-transparent border border-transparent shadow-none"
+              ? "backdrop-blur-md bg-black/85 border-b border-white/10 shadow-xl"
+              : "bg-transparent border-b border-transparent shadow-none"
           }`}
         >
           <motion.div variants={textVariant(0.2)} className="text-center">
-            <h1 className="text-4xl md:text-5xl capitalize font-bold text-white mb-2 tracking-wide">
+            <h1 className="text-4xl md:text-5xl capitalize font-bold text-white mb-1 tracking-wide">
               Projects
             </h1>
           </motion.div>
           <motion.p
             variants={fadeIn("up", "spring", 0.4, 1)}
-            className="text-sm text-gray-300 max-w-2xl mx-auto text-center leading-relaxed"
+            className="text-xs sm:text-sm text-gray-300 max-w-2xl mx-auto text-center leading-relaxed"
           >
             Browse through my latest creative works and projects
           </motion.p>
         </header>
 
-        {/* Projects Grid with ample card padding */}
+        {/* Projects Grid with sleek reduced border radius */}
         <motion.div
           variants={staggerContainer(0.1, 0.2)}
-          className="grid grid-cols-1 md:grid-cols-2 gap-10 pb-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-12"
         >
           {projects.map((project, index) => (
             <motion.div
               key={project.id || project.title}
               variants={fadeIn("up", "spring", index * 0.1, 0.75)}
-              className="rounded-2xl overflow-hidden backdrop-blur-md bg-black/50 border border-white/15 transition-all hover:bg-white/10 hover:border-orange-500/50 shadow-xl"
+              className="rounded-sm overflow-hidden backdrop-blur-md bg-black/50 border border-white/15 transition-all hover:bg-white/10 hover:border-orange-500/50 shadow-md"
             >
-              <div className="p-8 md:p-10 space-y-6">
+              <div className="p-6 md:p-8 space-y-5">
                 <div>
-                  <h3 className="uppercase font-bold text-[#e85d04] text-xl mb-3 tracking-wide">
+                  <h3 className="uppercase font-bold text-[#e85d04] text-lg sm:text-xl mb-2 tracking-wide">
                     {project.title}
                   </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
+                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
                     {project.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3.5 py-1.5 text-xs bg-white/10 text-orange-300 rounded-lg border border-white/10"
+                      className="px-3 py-1 text-xs bg-white/10 text-orange-300 rounded-sm border border-white/10"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                {/* Buttons */}
-                <div className="flex flex-wrap gap-4 pt-4">
+                {/* Buttons with subtle rounded-sm radius */}
+                <div className="flex flex-wrap gap-3 pt-2">
                   {project.link && (
                     <motion.a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileTap={{ scale: 0.95 }}
-                      className="group inline-flex items-center px-5 py-3 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-orange-500 text-white hover:text-orange-400 rounded-xl bg-black/40 shadow-md"
+                      className="group inline-flex items-center px-4 py-2 text-xs sm:text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-orange-500 text-white hover:text-orange-400 rounded-sm bg-black/40 shadow-sm"
                     >
                       View Project
                       <motion.svg
@@ -140,7 +140,7 @@ export default function ProjectsClient({
                       target="_blank"
                       rel="noopener noreferrer"
                       whileTap={{ scale: 0.95 }}
-                      className="group inline-flex items-center px-5 py-3 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-gray-400 text-white hover:text-gray-300 rounded-xl bg-black/40 shadow-md"
+                      className="group inline-flex items-center px-4 py-2 text-xs sm:text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-gray-400 text-white hover:text-gray-300 rounded-sm bg-black/40 shadow-sm"
                     >
                       View Repo
                       <motion.svg
