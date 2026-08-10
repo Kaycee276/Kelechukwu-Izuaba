@@ -6,7 +6,10 @@ export async function POST(request: Request) {
     const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
 
     if (password === adminPassword) {
-      const response = NextResponse.json({ success: true, message: "Authenticated successfully" });
+      const response = NextResponse.json({
+        success: true,
+        message: "Authenticated successfully",
+      });
       response.cookies.set("admin_session", "authenticated", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
@@ -17,8 +20,14 @@ export async function POST(request: Request) {
       return response;
     }
 
-    return NextResponse.json({ success: false, message: "Invalid password" }, { status: 401 });
+    return NextResponse.json(
+      { success: false, message: "Invalid password" },
+      { status: 401 },
+    );
   } catch (error) {
-    return NextResponse.json({ success: false, message: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, message: "Internal server error" },
+      { status: 500 },
+    );
   }
 }
