@@ -62,18 +62,18 @@ export default function AboutPage() {
       variants={staggerContainer()}
       initial="hidden"
       animate="show"
-      className="w-full min-h-full md:h-full flex items-center justify-center px-4 sm:px-6 relative py-6 md:py-0 md:overflow-hidden"
+      className="h-full w-full flex items-center justify-center overflow-hidden px-2 sm:px-4 relative"
     >
       {/* Toolbox Modal */}
       {isToolboxOpen && <Toolbox tools={tools} toggleToolbox={toggleToolbox} />}
 
-      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-center md:max-h-[85vh] p-4 sm:p-6 rounded-sm">
-        {/* Profile Image (Visible on mobile as compact avatar, full on desktop) */}
+      <div className="max-w-4xl w-full grid grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-center max-h-[85vh] p-2 sm:p-4 rounded-sm">
+        {/* Left Column - Image (Preserved 2-column layout on all screens) */}
         <motion.div
           variants={fadeIn("right", "spring", 0.2, 1)}
           className="flex justify-center"
         >
-          <div className="relative aspect-square w-full max-w-[200px] sm:max-w-[260px] md:max-w-[300px] lg:max-w-[340px] overflow-hidden rounded-sm border border-white/20 shadow-md">
+          <div className="relative aspect-square w-full max-w-[130px] sm:max-w-[240px] md:max-w-[300px] lg:max-w-[340px] overflow-hidden rounded-sm border border-white/20 shadow-md">
             <motion.img
               src="/image-1.jpeg"
               alt="Kenneth Kelechukwu Izuaba"
@@ -84,43 +84,43 @@ export default function AboutPage() {
           </div>
         </motion.div>
 
-        {/* Content derived directly from CV */}
+        {/* Right Column - Content */}
         <motion.div
           variants={staggerContainer(0.1, 0.2)}
-          className="flex flex-col justify-center gap-3"
+          className="flex flex-col justify-center gap-1.5 sm:gap-3"
         >
           <motion.div variants={textVariant(0.2)}>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-wide">
+            <h1 className="text-lg sm:text-3xl lg:text-5xl font-bold text-white tracking-wide">
               About Me
             </h1>
-            <p className="text-xs text-[#e85d04] uppercase tracking-widest mt-1 font-semibold">
-              Full-Stack & Web3 Developer | Computer Science, UNN
+            <p className="text-[8px] sm:text-xs text-[#e85d04] uppercase tracking-widest mt-0.5 font-semibold">
+              Full-Stack & Web3 Developer | CS, UNN
             </p>
           </motion.div>
 
           <motion.div
             variants={fadeIn("left", "spring", 0.4, 1)}
-            className="space-y-2.5"
+            className="space-y-1.5 sm:space-y-2.5"
           >
-            <div className="text-xs sm:text-sm text-gray-300 space-y-2 leading-relaxed">
+            <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 space-y-1 sm:space-y-2 leading-tight sm:leading-relaxed">
               <p>
-                I'm <span className="uppercase font-semibold text-white">Kenneth Kelechukwu Izuaba</span>, a Full-Stack & Web3 Developer pursuing a B.Sc. in Computer Science at the University of Nigeria, Nsukka.
+                I'm <span className="uppercase font-semibold text-white">Kenneth Kelechukwu Izuaba</span>, a Full-Stack & Web3 Developer studying Computer Science at UNN.
               </p>
               <p>
-                I engineer end-to-end applications spanning full-stack search engines at <span className="text-white font-medium">NSKAI</span>, autonomous AI agents leveraging <span className="text-white font-medium">Claude API</span> & <span className="text-white font-medium">KeeperHub</span>, and high-performance Web3 dapps built with TypeScript, React, Next.js, and Solidity.
+                I build search engine systems at <span className="text-white font-medium">NSKAI</span>, autonomous AI agents (<span className="text-white font-medium">Claude API</span> & <span className="text-white font-medium">KeeperHub</span>), and Web3 dapps with TypeScript, React, Next.js, & Solidity.
               </p>
               <p>
-                From building trustless escrow chess platforms (<span className="text-white font-medium">Chesster</span>) to active open-source contributions across EVM & Solana ecosystems, I focus on clean architecture, type safety, and seamless user experiences.
+                From trustless escrow platforms (<span className="text-white font-medium">Chesster</span>) to active open-source contributions, I focus on clean code and performance.
               </p>
             </div>
           </motion.div>
 
-          <motion.div variants={fadeIn("up", "spring", 0.2, 1)} className="pt-1">
+          <motion.div variants={fadeIn("up", "spring", 0.2, 1)} className="pt-0.5">
             <button
               onClick={toggleToolbox}
-              className="px-4 py-2 bg-white/5 border border-white/20 rounded-sm text-white text-xs sm:text-sm cursor-pointer hover:bg-white/10 transition-all shadow-sm"
+              className="px-2.5 py-1 sm:px-4 sm:py-2 bg-white/5 border border-white/20 rounded-sm text-white text-[9px] sm:text-xs md:text-sm cursor-pointer hover:bg-white/10 transition-all shadow-sm"
             >
-              View My Tech Stack & Skills
+              View My Tech Stack
             </button>
           </motion.div>
         </motion.div>
