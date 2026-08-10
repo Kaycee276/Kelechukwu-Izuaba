@@ -110,34 +110,34 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
 
   const handleLogout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/login");
+    router.push("/sys-x92-vault/login");
     router.refresh();
   };
 
   return (
-    <div className="h-full overflow-y-auto custom-scroll py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div className="h-full overflow-y-auto custom-scroll py-10 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-8">
       {/* Header Bar */}
-      <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 mb-8 border-b border-white/10 gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-white flex items-center gap-3">
-            Admin Dashboard
+      <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-8 mb-6 border-b border-white/10 gap-6">
+        <div className="space-y-1">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white flex items-center gap-3">
+            Admin Vault
           </h1>
-          <p className="text-xs text-gray-400 mt-1">Manage your portfolio projects (SQLite + Drizzle ORM)</p>
+          <p className="text-xs sm:text-sm text-gray-400">Manage your portfolio projects (SQLite + Drizzle ORM)</p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <button
             onClick={() => router.push("/projects")}
-            className="px-3.5 py-2 text-xs font-medium bg-white/5 border border-white/15 rounded-lg text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center gap-1.5"
+            className="px-4 py-2.5 text-xs font-medium bg-white/5 border border-white/15 rounded-xl text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center gap-2"
           >
-            <ExternalLink className="w-3.5 h-3.5 text-orange-400" />
+            <ExternalLink className="w-4 h-4 text-orange-400" />
             View Live Portfolio
           </button>
           <button
             onClick={handleLogout}
-            className="px-3.5 py-2 text-xs font-medium bg-red-950/40 border border-red-500/30 rounded-lg text-red-300 hover:bg-red-900/50 transition-colors cursor-pointer flex items-center gap-1.5"
+            className="px-4 py-2.5 text-xs font-medium bg-red-950/40 border border-red-500/30 rounded-xl text-red-300 hover:bg-red-900/50 transition-colors cursor-pointer flex items-center gap-2"
           >
-            <LogOut className="w-3.5 h-3.5" />
+            <LogOut className="w-4 h-4" />
             Logout
           </button>
         </div>
@@ -150,7 +150,7 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className={`p-4 mb-6 rounded-xl border flex items-center gap-3 ${
+            className={`p-5 rounded-2xl border flex items-center gap-4 ${
               statusMessage.type === "success"
                 ? "bg-emerald-950/40 border-emerald-500/40 text-emerald-300"
                 : "bg-red-950/40 border-red-500/40 text-red-300"
@@ -161,23 +161,23 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
             ) : (
               <AlertCircle className="w-5 h-5 flex-shrink-0" />
             )}
-            <span className="text-sm">{statusMessage.text}</span>
+            <span className="text-sm font-medium">{statusMessage.text}</span>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Form Column */}
         <div className="lg:col-span-1">
-          <div className="p-6 rounded-2xl border border-white/15 bg-black/60 backdrop-blur-xl sticky top-4">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <div className="p-8 rounded-2xl border border-white/15 bg-black/70 backdrop-blur-xl sticky top-4 space-y-6">
+            <h2 className="text-xl font-bold text-white flex items-center gap-2.5">
               <Plus className="w-5 h-5 text-[#e85d04]" />
               Add New Project
             </h2>
 
-            <form onSubmit={handleCreate} className="space-y-4">
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-medium">
+            <form onSubmit={handleCreate} className="space-y-5">
+              <div className="space-y-1.5">
+                <label className="block text-xs uppercase tracking-wider text-gray-400 font-medium px-1">
                   Project Title *
                 </label>
                 <input
@@ -186,12 +186,12 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
                   onChange={(e) => setTitle(e.target.value)}
                   required
                   placeholder="e.g. Chesster"
-                  className="w-full px-3.5 py-2.5 bg-white/5 border border-white/15 rounded-lg text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-medium">
+              <div className="space-y-1.5">
+                <label className="block text-xs uppercase tracking-wider text-gray-400 font-medium px-1">
                   Description *
                 </label>
                 <textarea
@@ -200,12 +200,12 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
                   required
                   rows={4}
                   placeholder="Brief summary of what this project does..."
-                  className="w-full px-3.5 py-2.5 bg-white/5 border border-white/15 rounded-lg text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors resize-none leading-relaxed"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-medium">
+              <div className="space-y-1.5">
+                <label className="block text-xs uppercase tracking-wider text-gray-400 font-medium px-1">
                   Tags (comma separated) *
                 </label>
                 <input
@@ -214,12 +214,12 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
                   onChange={(e) => setTags(e.target.value)}
                   required
                   placeholder="React, Next.js, Solidity, Tailwind"
-                  className="w-full px-3.5 py-2.5 bg-white/5 border border-white/15 rounded-lg text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-medium">
+              <div className="space-y-1.5">
+                <label className="block text-xs uppercase tracking-wider text-gray-400 font-medium px-1">
                   Live Demo URL
                 </label>
                 <input
@@ -227,12 +227,12 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
                   value={link}
                   onChange={(e) => setLink(e.target.value)}
                   placeholder="https://my-app.vercel.app"
-                  className="w-full px-3.5 py-2.5 bg-white/5 border border-white/15 rounded-lg text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-medium">
+              <div className="space-y-1.5">
+                <label className="block text-xs uppercase tracking-wider text-gray-400 font-medium px-1">
                   GitHub Repo URL
                 </label>
                 <input
@@ -240,14 +240,14 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
                   value={repo}
                   onChange={(e) => setRepo(e.target.value)}
                   placeholder="https://github.com/username/repo"
-                  className="w-full px-3.5 py-2.5 bg-white/5 border border-white/15 rounded-lg text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white text-sm placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 mt-2 bg-[#e85d04] hover:bg-[#d05303] text-white font-semibold rounded-lg transition-colors cursor-pointer shadow-lg disabled:opacity-50 flex items-center justify-center gap-2"
+                className="w-full py-3.5 mt-4 bg-[#e85d04] hover:bg-[#d05303] text-white font-semibold rounded-xl transition-colors cursor-pointer shadow-lg disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
               >
                 {submitting ? "Saving to Database..." : "Save Project"}
               </button>
@@ -256,14 +256,14 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
         </div>
 
         {/* Existing Projects List */}
-        <div className="lg:col-span-2 space-y-4">
-          <div className="flex items-center justify-between">
+        <div className="lg:col-span-2 space-y-6">
+          <div className="flex items-center justify-between px-2">
             <h2 className="text-xl font-bold text-white">
               Projects in SQLite Database ({projectList.length})
             </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-5">
             {projectList.map((project) => (
               <motion.div
                 key={project.id}
@@ -271,14 +271,14 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="p-5 rounded-xl border border-white/15 bg-black/40 backdrop-blur-md flex flex-col justify-between gap-4 hover:border-white/25 transition-all"
+                className="p-6 md:p-8 rounded-2xl border border-white/15 bg-black/50 backdrop-blur-md flex flex-col justify-between gap-6 hover:border-white/25 transition-all shadow-lg"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-lg font-bold text-[#e85d04] uppercase">
+                <div className="flex items-start justify-between gap-6">
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-bold text-[#e85d04] uppercase tracking-wide">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-gray-300 mt-1 line-clamp-3">
+                    <p className="text-sm text-gray-300 leading-relaxed">
                       {project.description}
                     </p>
                   </div>
@@ -286,28 +286,28 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
                     onClick={() => handleDelete(project.id)}
                     disabled={deletingId === project.id}
                     title="Delete project"
-                    className="p-2 text-red-400 hover:text-red-300 hover:bg-red-950/50 border border-red-500/20 rounded-lg transition-colors cursor-pointer flex-shrink-0 disabled:opacity-50"
+                    className="p-3 text-red-400 hover:text-red-300 hover:bg-red-950/50 border border-red-500/20 rounded-xl transition-colors cursor-pointer flex-shrink-0 disabled:opacity-50"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10">
-                  <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
+                  <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 text-xs bg-white/10 text-orange-300 rounded">
+                      <span key={tag} className="px-3 py-1 text-xs bg-white/10 text-orange-300 rounded-lg border border-white/5">
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-3 text-xs">
+                  <div className="flex items-center gap-4 text-xs font-medium">
                     {project.link && (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white hover:text-orange-400 flex items-center gap-1 transition-colors"
+                        className="text-white hover:text-orange-400 flex items-center gap-1.5 transition-colors px-2 py-1"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
                         Demo
@@ -318,7 +318,7 @@ export default function AdminDashboardClient({ initialProjects }: { initialProje
                         href={project.repo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white hover:text-orange-400 flex items-center gap-1 transition-colors"
+                        className="text-white hover:text-orange-400 flex items-center gap-1.5 transition-colors px-2 py-1"
                       >
                         <Github className="w-3.5 h-3.5" />
                         Repo

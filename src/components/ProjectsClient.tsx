@@ -18,60 +18,63 @@ export default function ProjectsClient({ projects }: { projects: ProjectItem[] }
 			variants={staggerContainer()}
 			initial="hidden"
 			animate="show"
-			className="h-full overflow-y-auto py-12 custom-scroll"
+			className="h-full overflow-y-auto py-10 px-4 sm:px-6 lg:px-8 custom-scroll space-y-8"
 		>
-			<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
+			<div className="max-w-6xl mx-auto flex flex-col gap-10">
 				{/* Header */}
-				<header className="sticky top-0 z-50 backdrop-blur-sm flex flex-col gap-6 items-center">
+				<header className="sticky top-0 z-50 backdrop-blur-md bg-black/40 py-6 px-4 rounded-2xl border border-white/10 flex flex-col gap-4 items-center">
 					<motion.div
 						variants={textVariant(0.2)}
-						className="text-center mb-8"
+						className="text-center"
 					>
-						<h1 className="text-4xl md:text-5xl capitalize font-bold text-white mb-4">
+						<h1 className="text-4xl md:text-5xl capitalize font-bold text-white mb-2 tracking-wide">
 							Projects
 						</h1>
 					</motion.div>
 					<motion.p
 						variants={fadeIn("up", "spring", 0.4, 1)}
-						className="text-sm text-gray-300 max-w-2xl mx-auto text-center"
+						className="text-sm text-gray-300 max-w-2xl mx-auto text-center leading-relaxed"
 					>
-						Browse through my latest creative works and projects (powered by SQLite)
+						Browse through my latest creative works and projects
 					</motion.p>
 				</header>
 
-				{/* Projects Grid */}
+				{/* Projects Grid with enhanced card padding */}
 				<motion.div
 					variants={staggerContainer(0.1, 0.2)}
-					className="grid grid-cols-1 md:grid-cols-2 gap-8"
+					className="grid grid-cols-1 md:grid-cols-2 gap-10"
 				>
 					{projects.map((project, index) => (
 						<motion.div
 							key={project.id || project.title}
 							variants={fadeIn("up", "spring", index * 0.1, 0.75)}
-							className="rounded-xl overflow-hidden backdrop-blur-md bg-black/40 border border-white/10 transition-all hover:bg-white/5 hover:border-orange-500/50"
+							className="rounded-2xl overflow-hidden backdrop-blur-md bg-black/50 border border-white/15 transition-all hover:bg-white/10 hover:border-orange-500/50 shadow-xl"
 						>
-							<div className="p-6">
-								<h3 className="uppercase font-semibold text-[#e85d04] text-xl mb-2">
-									{project.title}
-								</h3>
-								<p className="text-gray-300 mb-4 text-sm leading-relaxed">{project.description}</p>
-								<div className="flex flex-wrap gap-2 mb-6">
+							<div className="p-8 space-y-6">
+								<div>
+									<h3 className="uppercase font-bold text-[#e85d04] text-xl mb-3 tracking-wide">
+										{project.title}
+									</h3>
+									<p className="text-gray-300 text-sm leading-relaxed">{project.description}</p>
+								</div>
+
+								<div className="flex flex-wrap gap-2.5">
 									{project.tags.map((tag) => (
-										<span key={tag} className="px-2.5 py-1 text-xs bg-white/10 text-orange-300 rounded border border-white/10">
+										<span key={tag} className="px-3 py-1 text-xs bg-white/10 text-orange-300 rounded-lg border border-white/10">
 											{tag}
 										</span>
 									))}
 								</div>
 
-								{/* Buttons */}
-								<div className="flex gap-3">
+								{/* Buttons with generous padding */}
+								<div className="flex flex-wrap gap-4 pt-2">
 									{project.link && (
 										<motion.a
 											href={project.link}
 											target="_blank"
 											rel="noopener noreferrer"
 											whileTap={{ scale: 0.95 }}
-											className="group inline-flex items-center px-4 py-2 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-orange-500 text-white hover:text-orange-400 rounded-lg bg-black/30"
+											className="group inline-flex items-center px-5 py-2.5 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-orange-500 text-white hover:text-orange-400 rounded-xl bg-black/40 shadow"
 										>
 											View Project
 											<motion.svg
@@ -95,7 +98,7 @@ export default function ProjectsClient({ projects }: { projects: ProjectItem[] }
 											target="_blank"
 											rel="noopener noreferrer"
 											whileTap={{ scale: 0.95 }}
-											className="group inline-flex items-center px-4 py-2 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-gray-400 text-white hover:text-gray-300 rounded-lg bg-black/30"
+											className="group inline-flex items-center px-5 py-2.5 text-sm font-medium transition-all ease-in-out border border-white/20 hover:border-gray-400 text-white hover:text-gray-300 rounded-xl bg-black/40 shadow"
 										>
 											View Repo
 											<motion.svg

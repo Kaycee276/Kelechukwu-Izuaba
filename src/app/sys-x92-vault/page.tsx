@@ -6,12 +6,12 @@ import AdminDashboardClient from "@/components/AdminDashboardClient";
 
 export const revalidate = 0;
 
-export default async function AdminPage() {
+export default async function SecretAdminPage() {
   const cookieStore = await cookies();
   const session = cookieStore.get("admin_session");
 
   if (session?.value !== "authenticated") {
-    redirect("/admin/login");
+    redirect("/sys-x92-vault/login");
   }
 
   const rawProjects = db.select().from(projects).all();
