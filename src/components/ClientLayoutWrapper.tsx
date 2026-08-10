@@ -37,6 +37,16 @@ export default function ClientLayoutWrapper({
     return false;
   };
 
+  const isAdminRoute = pathname?.startsWith("/sys-x92-vault");
+
+  if (isAdminRoute) {
+    return (
+      <section className="min-h-screen w-full bg-black text-white p-4 sm:p-6 lg:p-8">
+        {children}
+      </section>
+    );
+  }
+
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black text-white flex flex-col">
       {/* Background Image */}

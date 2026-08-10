@@ -86,9 +86,6 @@ export default function AboutPage() {
             <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white tracking-wide">
               About Me
             </h1>
-            <p className="text-[10px] sm:text-xs text-[#e85d04] uppercase tracking-widest mt-1 font-semibold">
-              Full-Stack & Web3 Developer | Computer Science, UNN
-            </p>
           </motion.div>
 
           <motion.div
