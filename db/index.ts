@@ -7,7 +7,7 @@ import path from "path";
 const dbPath = path.resolve(process.cwd(), "sqlite.db");
 const sqlite = new Database(dbPath);
 
-// Create table automatically if it doesn't exist yet
+// Create tables automatically if they don't exist yet
 sqlite.exec(`
   CREATE TABLE IF NOT EXISTS projects (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -16,6 +16,15 @@ sqlite.exec(`
     tags TEXT NOT NULL,
     link TEXT,
     repo TEXT,
+    created_at TEXT DEFAULT (datetime('now'))
+  );
+
+  CREATE TABLE IF NOT EXISTS messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    message TEXT NOT NULL,
+    read INTEGER DEFAULT 0,
     created_at TEXT DEFAULT (datetime('now'))
   );
 `);

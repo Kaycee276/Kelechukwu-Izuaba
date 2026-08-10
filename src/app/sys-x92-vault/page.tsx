@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { db } from "@db/index";
-import { projects } from "@db/schema";
+import { projects, messages } from "@db/schema";
 import { desc } from "drizzle-orm";
 import AdminDashboardClient from "@/components/AdminDashboardClient";
 
@@ -16,6 +16,7 @@ export default async function SecretAdminPage() {
   }
 
   const rawProjects = db.select().from(projects).orderBy(desc(projects.id)).all();
+  const rawMessages = db.select().from(messages).orderBy(desc(messages.id)).all();
 
   const formattedProjects = rawProjects.map((p) => {
     let parsedTags: string[] = [];
@@ -35,5 +36,10 @@ export default async function SecretAdminPage() {
     };
   });
 
-  return <AdminDashboardClient initialProjects={formattedProjects} />;
+  return (
+    <AdminDashboardClient
+      initialProjects={formattedProjects}
+      initialMessages={rawMessages}
+    />
+  );
 }

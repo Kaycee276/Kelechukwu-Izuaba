@@ -10,5 +10,17 @@ export const projects = sqliteTable("projects", {
   createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
 });
 
+export const messages = sqliteTable("messages", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  message: text("message").notNull(),
+  read: integer("read").default(0), // 0 = unread, 1 = read
+  createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+});
+
 export type Project = typeof projects.$inferSelect;
 export type NewProject = typeof projects.$inferInsert;
+
+export type Message = typeof messages.$inferSelect;
+export type NewMessage = typeof messages.$inferInsert;
