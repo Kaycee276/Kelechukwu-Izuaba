@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { db } from "@db/index";
 import { projects } from "@db/schema";
+import { desc } from "drizzle-orm";
 import AdminDashboardClient from "@/components/AdminDashboardClient";
 
 export const revalidate = 0;
@@ -14,7 +15,7 @@ export default async function SecretAdminPage() {
     redirect("/sys-x92-vault/login");
   }
 
-  const rawProjects = db.select().from(projects).all();
+  const rawProjects = db.select().from(projects).orderBy(desc(projects.id)).all();
 
   const formattedProjects = rawProjects.map((p) => {
     let parsedTags: string[] = [];

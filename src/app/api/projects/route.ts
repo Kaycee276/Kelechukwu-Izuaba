@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { db } from "@db/index";
 import { projects } from "@db/schema";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 
 async function isAuthorized() {
   const cookieStore = await cookies();
@@ -12,7 +12,7 @@ async function isAuthorized() {
 
 export async function GET() {
   try {
-    const allProjects = db.select().from(projects).all();
+    const allProjects = db.select().from(projects).orderBy(desc(projects.id)).all();
     const formatted = allProjects.map((p) => {
       let parsedTags: string[] = [];
       try {

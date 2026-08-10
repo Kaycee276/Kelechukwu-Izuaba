@@ -1,11 +1,12 @@
 import { db } from "@db/index";
 import { projects } from "@db/schema";
+import { desc } from "drizzle-orm";
 import ProjectsClient, { ProjectItem } from "@/components/ProjectsClient";
 
 export const revalidate = 0; // Disable caching so new projects appear dynamically
 
 export default async function ProjectsPage() {
-	const rawProjects = db.select().from(projects).all();
+	const rawProjects = db.select().from(projects).orderBy(desc(projects.id)).all();
 
 	const formattedProjects: ProjectItem[] = rawProjects.map((p) => {
 		let parsedTags: string[] = [];
