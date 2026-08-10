@@ -62,18 +62,18 @@ export default function AboutPage() {
       variants={staggerContainer()}
       initial="hidden"
       animate="show"
-      className="h-full w-full flex items-center justify-center overflow-hidden px-4 sm:px-6 relative"
+      className="w-full min-h-full md:h-full flex items-center justify-center px-4 sm:px-6 relative py-6 md:py-0 md:overflow-hidden"
     >
       {/* Toolbox Modal */}
       {isToolboxOpen && <Toolbox tools={tools} toggleToolbox={toggleToolbox} />}
 
-      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-6 lg:gap-8 items-center max-h-[85vh] p-4 sm:p-6 rounded-sm">
-        {/* Left Column - Image */}
+      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-center md:max-h-[85vh] p-4 sm:p-6 rounded-sm">
+        {/* Profile Image (Visible on mobile as compact avatar, full on desktop) */}
         <motion.div
           variants={fadeIn("right", "spring", 0.2, 1)}
-          className="hidden md:flex justify-center"
+          className="flex justify-center"
         >
-          <div className="relative aspect-square w-full max-w-[300px] lg:max-w-[340px] overflow-hidden rounded-sm border border-white/20 shadow-md">
+          <div className="relative aspect-square w-full max-w-[200px] sm:max-w-[260px] md:max-w-[300px] lg:max-w-[340px] overflow-hidden rounded-sm border border-white/20 shadow-md">
             <motion.img
               src="/image-1.jpeg"
               alt="Kenneth Kelechukwu Izuaba"
@@ -84,7 +84,7 @@ export default function AboutPage() {
           </div>
         </motion.div>
 
-        {/* Right Column - Content derived directly from CV */}
+        {/* Content derived directly from CV */}
         <motion.div
           variants={staggerContainer(0.1, 0.2)}
           className="flex flex-col justify-center gap-3"
