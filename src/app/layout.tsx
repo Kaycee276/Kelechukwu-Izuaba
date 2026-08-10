@@ -4,7 +4,8 @@ import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 
 export const metadata: Metadata = {
   title: "Kenneth Kelechukwu Izuaba | Fullstack & Web3 Developer",
-  description: "Kenneth Kelechukwu Izuaba - Fullstack & Web3 Developer Portfolio",
+  description:
+    "Kenneth Kelechukwu Izuaba - Fullstack & Web3 Developer Portfolio",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",

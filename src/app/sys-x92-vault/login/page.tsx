@@ -46,7 +46,9 @@ export default function SecretAdminLoginPage() {
         className="max-w-md w-full p-6 md:p-8 rounded-sm border border-white/20 bg-black/80 backdrop-blur-xl shadow-2xl space-y-6"
       >
         <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold text-white tracking-wide">Vault Access</h1>
+          <h1 className="text-2xl font-bold text-white tracking-wide">
+            Vault Access
+          </h1>
           <p className="text-xs text-gray-400 leading-relaxed px-2">
             Enter master key to access administrative dashboard
           </p>
@@ -78,7 +80,11 @@ export default function SecretAdminLoginPage() {
                 title={showPassword ? "Hide password" : "Show password"}
                 className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors p-1 cursor-pointer"
               >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
               </button>
             </div>
           </div>
