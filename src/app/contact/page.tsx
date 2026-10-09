@@ -2,16 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaWhatsapp, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 const socials = [
-  {
-    name: "Whatsapp",
-    url: "https://wa.me/2349127178874",
-    icon: <FaWhatsapp className="text-xl sm:text-2xl" />,
-  },
   {
     name: "Email",
     url: "mailto:kizuaba@gmail.com",
@@ -119,9 +114,9 @@ export default function ContactPage() {
               }`}
             >
               {status.type === "success" ? (
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                <CheckCircle2 className="w-5 h-5 shrink-0" />
               ) : (
-                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                <AlertCircle className="w-5 h-5 shrink-0" />
               )}
               <span className="text-xs font-medium">{status.text}</span>
             </motion.div>
