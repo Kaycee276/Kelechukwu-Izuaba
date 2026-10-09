@@ -3,6 +3,9 @@ import "./globals.css";
 import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://kelechukwu-izuaba.netlify.app"
+  ),
   title: "Kenneth Kelechukwu Izuaba | Fullstack & Web3 Developer",
   description:
     "Portfolio of Kenneth Kelechukwu Izuaba — Fullstack & Web3 Developer specializing in Next.js, TypeScript, Solidity, Autonomous AI Agents, and scalable distributed systems.",
