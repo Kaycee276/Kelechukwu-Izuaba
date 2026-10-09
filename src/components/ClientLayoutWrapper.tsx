@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Logo from "./Logo";
 import Socials from "./Socials";
-import CommandPalette from "./CommandPalette";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -133,9 +132,6 @@ export default function ClientLayoutWrapper({
           </motion.div>
         </aside>
       </div>
-
-      {/* Developer Command Palette (Ctrl+K) */}
-      <CommandPalette />
     </section>
   );
 }
